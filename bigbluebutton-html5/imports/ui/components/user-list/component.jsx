@@ -7,28 +7,20 @@ import UserContentContainer from './user-list-content/container';
 
 const propTypes = {
   compact: PropTypes.bool,
-  CustomLogoUrl: PropTypes.string,
-  CustomDarkLogoUrl: PropTypes.string,
-  DarkModeIsEnabled: PropTypes.bool,
   showBranding: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
   compact: false,
-  CustomLogoUrl: null,
-  CustomDarkLogoUrl: null,
 };
 
 class UserList extends PureComponent {
   render() {
     const {
       compact,
-      CustomLogoUrl,
-      CustomDarkLogoUrl,
-      DarkModeIsEnabled,
       showBranding,
     } = this.props;
-    const logoUrl = DarkModeIsEnabled ? CustomDarkLogoUrl : CustomLogoUrl;
+    const logoUrl = '/html5client/resources/images/ilmify.webp';
 
     return (
       <Styled.UserList data-test="userListContainer">

@@ -1,3 +1,4 @@
+/* eslint-disable max-len, no-shadow, no-unused-vars */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRef, useCallback, useState } from 'react';
@@ -296,10 +297,9 @@ const Whiteboard = React.memo((props) => {
       if (tools.deleteAll) {
         toolbarItems.splice(7, 0, toolbarItem(tools.deleteAll));
       }
-      const hasRestrictions =
-      bbbMultiUserPenOnly ||
-      (Array.isArray(bbbPresenterTools) && bbbPresenterTools.length > 0) ||
-      (Array.isArray(bbbMultiUserTools) && bbbMultiUserTools.length > 0);
+      const hasRestrictions = bbbMultiUserPenOnly
+        || (Array.isArray(bbbPresenterTools) && bbbPresenterTools.length > 0)
+        || (Array.isArray(bbbMultiUserTools) && bbbMultiUserTools.length > 0);
       const shouldBypassFiltering = isTestEnv && !hasRestrictions;
 
       if (shouldBypassFiltering) {
@@ -377,7 +377,7 @@ const Whiteboard = React.memo((props) => {
       .filter((record) => record.typeName === 'shape' && record.parentId)
       .filter((record) => (
         record?.meta?.presentationId !== presentationIdRef.current
-          || !record?.meta?.presentationId || record.parentId !== cpid
+        || !record?.meta?.presentationId || record.parentId !== cpid
       ))
       .map((shape) => shape.id);
 
@@ -388,32 +388,28 @@ const Whiteboard = React.memo((props) => {
 
   const debouncedSetInitialZoom = debounce(() => {
     if (
-      currentPresentationPageRef.current &&
-      currentPresentationPageRef.current.scaledWidth > 0 &&
-      currentPresentationPageRef.current.scaledHeight > 0 &&
-      presentationAreaWidth > 0 &&
-      presentationAreaHeight > 0
+      currentPresentationPageRef.current
+      && currentPresentationPageRef.current.scaledWidth > 0
+      && currentPresentationPageRef.current.scaledHeight > 0
+      && presentationAreaWidth > 0
+      && presentationAreaHeight > 0
     ) {
-      const slideAspectRatio =
-        currentPresentationPageRef.current.scaledWidth /
-        currentPresentationPageRef.current.scaledHeight;
+      const slideAspectRatio = currentPresentationPageRef.current.scaledWidth
+        / currentPresentationPageRef.current.scaledHeight;
 
-      const presentationAreaAspectRatio =
-        presentationAreaWidth / presentationAreaHeight;
+      const presentationAreaAspectRatio = presentationAreaWidth / presentationAreaHeight;
 
       let initialZoom;
 
       if (
-        slideAspectRatio > presentationAreaAspectRatio ||
-        (fitToWidthRef.current && isPresenterRef.current)
+        slideAspectRatio > presentationAreaAspectRatio
+        || (fitToWidthRef.current && isPresenterRef.current)
       ) {
-        initialZoom =
-          presentationAreaWidth /
-          currentPresentationPageRef.current.scaledWidth;
+        initialZoom = presentationAreaWidth
+          / currentPresentationPageRef.current.scaledWidth;
       } else {
-        initialZoom =
-          presentationAreaHeight /
-          currentPresentationPageRef.current.scaledHeight;
+        initialZoom = presentationAreaHeight
+          / currentPresentationPageRef.current.scaledHeight;
       }
 
       initialZoomRef.current = initialZoom;
@@ -853,8 +849,8 @@ const Whiteboard = React.memo((props) => {
         '+': handleKeybindZoom.bind(null, 'zoomIn'),
         '-': handleKeybindZoom.bind(null, 'zoomOut'),
         '=': handleKeybindZoom.bind(null, 'zoomIn'),
-        'add': handleKeybindZoom.bind(null, 'zoomIn'),
-        'subtract': handleKeybindZoom.bind(null, 'zoomOut'),
+        add: handleKeybindZoom.bind(null, 'zoomIn'),
+        subtract: handleKeybindZoom.bind(null, 'zoomOut'),
       };
 
       if (ctrlKeyMap[key]) {
@@ -1031,11 +1027,9 @@ const Whiteboard = React.memo((props) => {
 
     if (!Number.isFinite(newSlideZoom) || !Number.isFinite(newContainerZoom)) return;
 
-    setCursorZoom((prev) =>
-      prev.slideZoom === newSlideZoom && prev.containerZoom === newContainerZoom
-        ? prev
-        : { slideZoom: newSlideZoom, containerZoom: newContainerZoom },
-    );
+    setCursorZoom((prev) => (prev.slideZoom === newSlideZoom && prev.containerZoom === newContainerZoom
+      ? prev
+      : { slideZoom: newSlideZoom, containerZoom: newContainerZoom }));
   };
   updateCursorZoomRef.current = updateCursorZoom;
 
@@ -1193,7 +1187,7 @@ const Whiteboard = React.memo((props) => {
       _stableCount = 0;
     } else if (
       innerWrapperWidth === lastDimensions.width
-        && innerWrapperHeight === lastDimensions.height
+      && innerWrapperHeight === lastDimensions.height
     ) {
       _stableCount += 1;
     } else {
@@ -1464,7 +1458,7 @@ const Whiteboard = React.memo((props) => {
               currentPresentationPageRef.current?.scaledHeight,
             );
             const tlCamPercent = Math.round(
-              (nextCam.z / (initialZoomRef.current || 1)) * 100
+              (nextCam.z / (initialZoomRef.current || 1)) * 100,
             );
 
             if (tlCamPercent !== zoomValueRef.current) {
@@ -1480,9 +1474,9 @@ const Whiteboard = React.memo((props) => {
             }
 
             if (
-              tlCamPercent === zoomValueRef.current &&
-              (!hasZoomSyncedRef.current || (hasZoomSyncedRef.current && panned)) &&
-              isMountedRef.current
+              tlCamPercent === zoomValueRef.current
+              && (!hasZoomSyncedRef.current || (hasZoomSyncedRef.current && panned))
+              && isMountedRef.current
             ) {
               hasZoomSyncedRef.current = true;
 
@@ -2379,7 +2373,7 @@ const Whiteboard = React.memo((props) => {
     Promise.race([
       // decode() rejects on a broken/401/malformed asset; swallow it so a bad asset degrades
       // to "apply the swap anyway" (the pre-fix behavior) and never wedges navigation.
-      img.decode().catch(() => {}),
+      img.decode().catch(() => { }),
       new Promise((resolve) => {
         fallbackTimer = setTimeout(resolve, decodeTimeout);
       }),
@@ -2431,8 +2425,7 @@ const Whiteboard = React.memo((props) => {
   }, [tlEditorRef?.current?.camera, presentationAreaWidth, presentationAreaHeight, presentationId]);
 
   React.useEffect(() => {
-    const baseName =
-      window.meetingClientSettings.public.app.cdn
+    const baseName = window.meetingClientSettings.public.app.cdn
       + window.meetingClientSettings.public.app.basename;
     const makeCursorUrl = (filename) => `${baseName}/resources/images/whiteboard-cursor/${filename}`;
 
@@ -2449,16 +2442,14 @@ const Whiteboard = React.memo((props) => {
     setCursorType(newCursor);
   }, [tlEditorRef.current?.getCurrentToolId()]);
 
-  const getToolbarCurrentState = useCallback(() => {
-    return {
-      colorStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultColorStyle.id],
-      dashStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultDashStyle.id],
-      fillStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultFillStyle.id],
-      fontStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultFontStyle.id],
-      sizeStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultSizeStyle.id],
-      selectedTool: tlEditorRef.current?.getCurrentToolId(),
-    };
-  }, [
+  const getToolbarCurrentState = useCallback(() => ({
+    colorStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultColorStyle.id],
+    dashStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultDashStyle.id],
+    fillStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultFillStyle.id],
+    fontStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultFontStyle.id],
+    sizeStyle: tlEditorRef.current?.getInstanceState().stylesForNextShape[DefaultSizeStyle.id],
+    selectedTool: tlEditorRef.current?.getCurrentToolId(),
+  }), [
     tlEditorRef.current?.getInstanceState().stylesForNextShape,
     tlEditorRef.current?.getCurrentToolId(),
   ]);
