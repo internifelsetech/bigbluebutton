@@ -8,6 +8,7 @@ import BBBMenu from '/imports/ui/components/common/menu/component';
 import Button from '/imports/ui/components/common/button/component';
 import VideoPreviewContainer from '/imports/ui/components/video-preview/container';
 import PreviewService from '/imports/ui/components/video-preview/service';
+import { Video, VideoOff } from 'lucide-react';
 import { CameraSettingsDropdownItemType } from 'bigbluebutton-html-plugin-sdk/dist/cjs/extensible-areas/camera-settings-dropdown-item/enums';
 import { getSettingsSingletonInstance } from '/imports/ui/services/settings';
 import { CameraSettingsDropdownInterface } from 'bigbluebutton-html-plugin-sdk';
@@ -241,7 +242,7 @@ const JoinVideoButton: React.FC<JoinVideoButtonProps> = ({
           onClick={handleOnClick}
           hideLabel
           color={hasVideoStream ? 'primary' : 'default'}
-          icon={hasVideoStream ? 'video' : 'video_off'}
+          customIcon={hasVideoStream ? <Video size={16} /> : <VideoOff size={16} />}
           size="lg"
           circle
           disabled={!!disableReason}

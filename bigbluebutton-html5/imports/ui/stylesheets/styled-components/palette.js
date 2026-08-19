@@ -4,7 +4,7 @@ const colorOffWhite = 'var(--color-off-white, #F3F6F9)';
 const colorBlack = 'var(--color-black, #000000)';
 
 const colorGray = 'var(--color-gray, #4E5A66)';
-const colorGrayDark = 'var(--color-gray-dark, #06172A)';
+const colorGrayDark = 'var(--color-gray-dark, #000000)';
 const colorGrayLight = 'var(--color-gray-light, #8B9AA8)';
 const colorGrayLighter = 'var(--color-gray-lighter, #A7B3BD)';
 const colorGrayLightest = 'var(--color-gray-lightest, #D4D9DF)';
@@ -18,9 +18,9 @@ const colorBlueLighterChannel = '146 188 234';
 
 const colorTransparent = 'var(--color-transparent, #ff000000)';
 
-const colorUserModerator = 'var(--color-user-moderator, #7B209F)';
+const colorUserModerator = 'var(--color-user-moderator, #589E00)';
 
-const colorPrimary = 'var(--color-primary, #0F70D7)';
+const colorPrimary = 'var(--color-primary, #589E00)';
 const colorDanger = 'var(--color-danger, #DF2721)';
 const colorDangerDark = 'var(--color-danger-dark, #AE1010)';
 const colorSuccess = 'var(--color-success, #008081)';
@@ -30,7 +30,7 @@ const colorMuted = 'var(--color-muted, #586571)';
 const colorMutedBackground = 'var(--color-muted-background, #F3F6F9)';
 
 const colorBackground = `var(--color-background, ${colorGrayDark})`;
-const colorOverlay = 'var(--color-overlay, rgba(6, 23, 42, 0.75))';
+const colorOverlay = 'var(--color-overlay, rgba(0, 0, 0, 0.75))';
 
 const userListBg = `var(--user-list-bg, ${colorOffWhite})`;
 const userListText = `var(--user-list-text, ${colorGray})`;
@@ -52,11 +52,11 @@ const btnDefaultGhostBg = 'var(--btn-default-bg, rgba(255, 255, 255, 0.1))'; // 
 const btnDefaultGhostBorder = 'var(--btn-default-border, rgba(255, 255, 255, 0.5))'; // colorWhite, 50%
 const btnDefaultGhostActiveBg = 'var(--btn-default-active-bg, rgba(255, 255, 255, 0.2))'; // colorWhite, 20%
 
-const btnPrimaryBorder = 'var(--btn-primary-border, rgba(15, 112, 215, 0.5))'; // colorPrimary, 50%
+const btnPrimaryBorder = 'var(--btn-primary-border, rgba(88, 158, 0, 0.5))'; // colorPrimary, 50%
 const btnPrimaryColor = `var(--btn-primary-color, ${colorWhite})`;
 const btnPrimaryBg = `var(--btn-primary-bg, ${colorPrimary})`;
-const btnPrimaryHoverBg = 'var(--btn-primary-hover-bg, #0C57A7)';
-const btnPrimaryActiveBg = 'var(--btn-primary-active-bg, #0A4B8F)';
+const btnPrimaryHoverBg = 'var(--btn-primary-hover-bg, #4A8500)';
+const btnPrimaryActiveBg = 'var(--btn-primary-active-bg, #3B6B00)';
 
 const btnSuccessBorder = `var(--btn-success-border, ${colorSuccess})`;
 const btnSuccessColor = `var(--btn-success-color, ${colorWhite})`;
@@ -104,7 +104,7 @@ const toolbarListColor = `var(--toolbar-list-color, ${colorGray})`;
 const toolbarButtonBg = `var(--toolbar-button-bg, ${btnDefaultBg})`;
 const toolbarListBg = 'var(--toolbar-list-bg, #DDD)';
 const toolbarListBgFocus = 'var(--toolbar-list-bg-focus, #C6C6C6)';
-const colorContentBackground = 'var(--color-content-background, #1B2A3A)';
+const colorContentBackground = 'var(--color-content-background, #000000)';
 
 const dropdownBg = `var(--dropdown-bg, ${colorWhite})`;
 
@@ -123,7 +123,7 @@ const toastSuccessBg = `var(--toast-success-bg, ${colorSuccess})`;
 const toastErrorColor = `var(--toast-error-color, ${colorWhite})`;
 const toastErrorBg = `var(--toast-error-bg, ${colorDanger})`;
 
-const webcamBackgroundColor = 'var(--webcam-background-color, #001428FF)';
+const webcamBackgroundColor = 'var(--webcam-background-color, #000000FF)';
 const webcamPlaceholderBorder = 'var(--webcam-placeholder-border, rgba(255, 255, 255, 0.5))'; // colorWhite, 50%
 
 // rgba version of colorPrimary (0F70D7) with 15% opacity for talking indicator background

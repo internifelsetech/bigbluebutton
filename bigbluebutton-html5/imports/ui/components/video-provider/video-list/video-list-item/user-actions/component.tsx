@@ -86,6 +86,7 @@ const intlMessages = defineMessages({
 
 interface UserActionProps {
   name: string;
+  color?: string;
   stream: VideoItem;
   cameraId: string;
   numOfStreams: number;
@@ -106,7 +107,7 @@ interface UserActionProps {
 
 const UserActions: React.FC<UserActionProps> = (props) => {
   const {
-    name, cameraId, numOfStreams, onHandleVideoFocus, stream, focused, onHandleMirror,
+    name, color, cameraId, numOfStreams, onHandleVideoFocus, stream, focused, onHandleMirror,
     isVideoSqueezed = false, videoContainer, isRTL, isStream, isSelfViewDisabled, isMirrored,
     amIModerator, isFullscreenContext, layoutContextDispatch,
   } = props;
@@ -297,6 +298,7 @@ const UserActions: React.FC<UserActionProps> = (props) => {
                 tabIndex={0}
                 data-test="dropdownWebcamButton"
                 $isRTL={isRTL}
+                $avatarColor={color}
                 role="button"
               >
                 {displayName}
@@ -317,7 +319,7 @@ const UserActions: React.FC<UserActionProps> = (props) => {
           />
         )
         : (
-          <Styled.Dropdown $isFirefox={isFirefox}>
+          <Styled.Dropdown $isFirefox={isFirefox} $avatarColor={color}>
             <Styled.UserName $noMenu={numOfStreams < 3}>
               {displayName}
             </Styled.UserName>

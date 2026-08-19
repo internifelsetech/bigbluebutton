@@ -18,12 +18,12 @@ const DEFAULT_VALUES = {
 
   bannerHeight: 34,
 
-  navBarHeight: 85,
+  navBarHeight: 40,
   navBarTop: 0,
   navBarTabOrder: 3,
 
-  actionBarHeight: 42,
-  actionBarPadding: 11.2,
+  actionBarHeight: 44,
+  actionBarPadding: 0,
   actionBarTabOrder: 6,
 
   sidebarNavMaxWidth: 240,
@@ -34,7 +34,7 @@ const DEFAULT_VALUES = {
   sidebarNavTabOrder: 1,
   sidebarNavPanel: PANELS.USERLIST,
 
-  sidebarContentMaxWidth: 800,
+  sidebarContentMaxWidth: 384,
   sidebarContentMinWidth: 70,
   sidebarContentMinHeight: 200,
   sidebarContentHeight: '100%',

@@ -59,13 +59,7 @@ const FULLSCREEN_CHANGE_EVENT = isSafari
   : 'fullscreenchange';
 
 const getToolbarHeight = () => {
-  let height = 0;
-  const toolbarEl = document.getElementById('presentationToolbarWrapper');
-  if (toolbarEl) {
-    const { clientHeight } = toolbarEl;
-    height = clientHeight;
-  }
-  return height;
+  return 0; // Floating toolbar does not offset presentation height
 };
 
 const IGNORE_PRESENTATION_RESTORATION_TIMEOUT = 5000;

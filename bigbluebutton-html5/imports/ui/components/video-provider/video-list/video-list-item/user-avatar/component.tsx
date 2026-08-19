@@ -1,6 +1,7 @@
 import React from 'react';
 import Styled from './styles';
 import { User, VideoItem } from '/imports/ui/components/video-provider/types';
+import { stringToColor } from '/imports/utils/string-utils';
 
 interface UserAvatarVideoProps {
   user: Partial<User>;
@@ -19,7 +20,7 @@ const UserAvatarVideo: React.FC<UserAvatarVideoProps> = (props) => {
   } = props;
   const data = { ...user, ...stream };
   const {
-    name = '', color = '', avatar: avatarRaw = '', isModerator,
+    name = '', avatar: avatarRaw = '', isModerator,
   } = data;
   const avatar = avatarRaw ?? '';
   let {
@@ -43,7 +44,7 @@ const UserAvatarVideo: React.FC<UserAvatarVideoProps> = (props) => {
       moderator={isModerator}
       presenter={presenter}
       dialIn={clientType === 'dial-in-user'}
-      color={color}
+      color={stringToColor(user?.userId || user?.name || name)}
       emoji={false}
       avatar={avatar}
       unhealthyStream={unhealthyStream}

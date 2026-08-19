@@ -14,7 +14,9 @@ const UserList = styled(FlexColumn)`
   justify-content: flex-start;
   background-color: ${userListBg};
   color: ${userListText};
-  height: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 `;
 
 const SmallTitle = styled.h2`

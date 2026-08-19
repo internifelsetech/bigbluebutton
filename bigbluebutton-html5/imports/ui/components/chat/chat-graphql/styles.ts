@@ -13,11 +13,12 @@ export const Chat = styled.div<ChatProps>`
   padding: ${smPaddingX};
   padding-bottom: ${smPaddingY};
   display: flex;
-  flex-grow: 1;
+  flex: 1;
+  min-height: 0;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   overflow: hidden;
-  height: 100%;
+  box-sizing: border-box;
   user-select: none;
 
   ${({ isRTL }) => isRTL && `

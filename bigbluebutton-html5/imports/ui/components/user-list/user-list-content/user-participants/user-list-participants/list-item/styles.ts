@@ -20,6 +20,7 @@ import {
   colorSuccess,
   colorDanger,
   colorOffWhite,
+  colorUserModerator,
 } from '/imports/ui/stylesheets/styled-components/palette';
 
 import { PluginButtonIcon } from '/imports/ui/components/plugins/plugin-icon/styles';
@@ -142,8 +143,8 @@ const Avatar = styled.div<AvatarProps>`
   border: 2px solid transparent;
   user-select: none;
   ${
-  ({ color }) => css`
-    background-color: ${color};
+  ({ color, moderator }) => css`
+    background-color: ${moderator ? colorUserModerator : color};
   `}
   }
 
@@ -171,7 +172,7 @@ const Avatar = styled.div<AvatarProps>`
     background-color: ${colorSuccess};
     color: ${colorWhite};
     opacity: 0;
-    font-family: 'bbb-icons';
+    font-family: 'ilmify-icons';
     font-size: .65rem;
     line-height: 0;
     text-align: center;

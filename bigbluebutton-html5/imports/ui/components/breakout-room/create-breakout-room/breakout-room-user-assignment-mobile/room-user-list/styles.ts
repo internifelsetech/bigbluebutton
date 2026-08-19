@@ -102,7 +102,7 @@ const LockIcon = styled.span`
   }
 
   &:after {
-    font-family: 'bbb-icons' !important;
+    font-family: 'ilmify-icons' !important;
     content: '\\e926';
     color: ${colorGrayLight};
   }

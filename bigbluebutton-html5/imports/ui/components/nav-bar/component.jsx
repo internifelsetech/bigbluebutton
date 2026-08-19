@@ -211,44 +211,26 @@ class NavBar extends Component {
 
   handleToggleUserList() {
     const {
-      sidebarNavigation,
       sidebarContent,
       layoutContextDispatch,
     } = this.props;
 
-    if (sidebarNavigation.isOpen) {
-      if (sidebarContent.isOpen) {
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
-          value: false,
-        });
-        layoutContextDispatch({
-          type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL,
-          value: PANELS.NONE,
-        });
-        layoutContextDispatch({
-          type: ACTIONS.SET_ID_CHAT_OPEN,
-          value: '',
-        });
-      }
-
+    if (sidebarContent.isOpen) {
       layoutContextDispatch({
-        type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
+        type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
         value: false,
-      });
-      layoutContextDispatch({
-        type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
-        value: PANELS.NONE,
       });
     } else {
       layoutContextDispatch({
-        type: ACTIONS.SET_SIDEBAR_NAVIGATION_IS_OPEN,
+        type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
         value: true,
       });
-      layoutContextDispatch({
-        type: ACTIONS.SET_SIDEBAR_NAVIGATION_PANEL,
-        value: PANELS.USERLIST,
-      });
+      if (sidebarContent.sidebarContentPanel === PANELS.NONE) {
+        layoutContextDispatch({
+          type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL,
+          value: PANELS.USERLIST,
+        });
+      }
     }
   }
 
@@ -303,6 +285,7 @@ class NavBar extends Component {
       main,
       isPinned,
       sidebarNavigation,
+      sidebarContent,
       currentUserId,
       isDirectLeaveButtonEnabled,
       isConnected,
@@ -314,7 +297,7 @@ class NavBar extends Component {
     let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
     ariaLabel += hasNotification ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
 
-    const isExpanded = sidebarNavigation.isOpen;
+    const isExpanded = sidebarContent.isOpen;
     const { isPhone } = deviceInfo;
 
     const { leftPluginItems, centerPluginItems, rightPluginItems } = this.splitPluginItems();

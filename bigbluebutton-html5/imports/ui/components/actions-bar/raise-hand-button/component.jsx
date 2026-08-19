@@ -5,6 +5,7 @@ import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import { SET_RAISE_HAND } from '/imports/ui/core/graphql/mutations/userMutations';
 import { useMutation } from '@apollo/client';
 import Styled from './styles';
+import { Hand } from 'lucide-react';
 
 const RaiseHandButton = (props) => {
   const {
@@ -42,7 +43,7 @@ const RaiseHandButton = (props) => {
   return (
     <Styled.RaiseHandButton
       data-test={raiseHand ? 'lowerHandBtn' : 'raiseHandBtn'}
-      icon="hand"
+      customIcon={<Hand size={16} />}
       label={intl.formatMessage(label)}
       description="Reactions"
       onKeyPress={() => { }}

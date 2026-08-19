@@ -31,7 +31,7 @@ export const ChatMessage = styled.div<ChatMessageProps>`
   & pre:has(code), p code:not(pre > code) {
     background-color: ${colorOffWhite};
     border: solid 1px ${colorBorder};
-    border-radius: 4px;
+    border-radius: 16px; /* <--- Radius for code snippets */
     padding: 2px;
     margin: 0;
     font-size: 12px;

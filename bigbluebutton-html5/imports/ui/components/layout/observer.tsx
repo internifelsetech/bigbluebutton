@@ -260,7 +260,7 @@ const LayoutObserver: React.FC = () => {
         });
       }
     }
-  }, [layoutIsReady]);
+  }, [layoutIsReady, sidebarContentPanel]);
 
   useEffect(() => {
     if (Session.equals('layoutReady', true)) {

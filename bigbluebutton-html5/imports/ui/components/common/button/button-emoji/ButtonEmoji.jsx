@@ -5,7 +5,7 @@ import TooltipContainer from '/imports/ui/components/common/tooltip/container';
 
 const propTypes = {
   /**
-   * Defines the name of the emoji to be used, as defined in bbb-icons.css
+   * Defines the name of the emoji to be used, as defined in ilmify-icons.css
    * @type String
    * @defaultValue ''
    */

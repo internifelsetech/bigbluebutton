@@ -165,7 +165,7 @@ const ButtonWrapper = styled(BaseButton)`
   &:active {
     &:focus {
       span:first-of-type::before {
-        border-radius: 50%;
+        border-radius: .75rem;
         outline: transparent;
         outline-width: ${borderSize};
         outline-style: solid;
@@ -809,7 +809,7 @@ const ButtonSpan = styled.span`
   `}
 
   ${({ circle }) => circle && `
-    border-radius: 50%;
+    border-radius: .75rem;
   `}
 
   ${({ circle, size }) => circle && size === 'sm' && `
@@ -1263,7 +1263,7 @@ const Button = styled(BaseButton)`
   `}
 
   ${({ circle }) => circle && `
-    border-radius: 50%;
+    border-radius: .75rem;
   `}
 
   ${({ circle, size }) => circle && size === 'sm' && `

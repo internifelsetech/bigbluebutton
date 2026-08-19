@@ -129,6 +129,8 @@ const PresentationContainer = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  box-sizing: border-box;
+  padding: 10px; /* Uniform padding aligns top and bottom with the sidebar */
 `;
 
 const Presentation = styled.div`
@@ -137,10 +139,14 @@ const Presentation = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100%; /* Forces exact height alignment */
   width: 100%;
   overflow: hidden;
   position: relative;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  background-color: #17181f;
+  margin-left: 10px; /* This creates the gap between sidebar and presentation */
 `;
 
 const SvgContainer = styled.div`
@@ -159,12 +165,20 @@ const WhiteboardSizeAvailable = styled.div`
 `;
 
 const PresentationToolbar = styled.div`
-  display: flex;
-  overflow-x: visible;
-  order: 2;
   position: absolute;
   bottom: 0;
-  z-index: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
 `;
 
 const ToastSeparator = styled(ToastStyled.Separator)``;
@@ -201,6 +215,16 @@ const ExtraTools = styled.div`
   [dir="rtl"] & {
     right: auto;
     left: 43px;
+  }
+
+  @media screen and (orientation: portrait) {
+    top: 45px;
+    right: 8px;
+
+    [dir="rtl"] & {
+      right: auto;
+      left: 8px;
+    }
   }
 
   ${({ isToolbarVisible }) => !isToolbarVisible && `

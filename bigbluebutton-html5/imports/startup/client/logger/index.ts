@@ -21,8 +21,8 @@ import { overridePluginSettingsToDefault } from '/imports/ui/components/plugins-
 // Call the logger by doing a function call with the level name, I.e, logger.warn('Hi on warn')
 const FALLBACK_CONFIG = meetingClientSettingsInitialValues.public.clientLog;
 
-const PLUGIN_LOGGER_NAME = 'pluginLogger';
-const CLIENT_LOGGER_NAME = 'clientLogger';
+const PLUGIN_LOGGER_NAME = 'ilmifyPlugin';
+const CLIENT_LOGGER_NAME = 'ilmifyApp';
 
 export function createStreamForTarget(
   target: keyof ClientLog,

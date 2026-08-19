@@ -139,12 +139,14 @@ const SmartLayout = (props) => {
   const calculatesSidebarContentHeight = () => {
     let sidebarContentHeight = 0;
     if (sidebarContentInput.isOpen) {
+      const navH = props.calculatesNavbarHeight ? props.calculatesNavbarHeight() : DEFAULT_VALUES.navBarHeight;
+      const actH = props.calculatesActionbarHeight ? props.calculatesActionbarHeight().height : 0;
       if (isMobile) {
         sidebarContentHeight = windowHeight() - DEFAULT_VALUES.navBarHeight;
       } else {
-        sidebarContentHeight = windowHeight();
+        sidebarContentHeight = windowHeight() - navH - actH;
       }
-      sidebarContentHeight -= bannerAreaHeight();
+      sidebarContentHeight -= (bannerAreaHeight() + 24);
     }
     return sidebarContentHeight;
   };

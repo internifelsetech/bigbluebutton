@@ -46,6 +46,7 @@ interface ChatMessageContentWrapperProps {
   $reactionPopoverIsOpen: boolean;
   $keyboardFocused: boolean;
   $emphasizedMessage: boolean;
+  $own: boolean;
 }
 
 interface ChatAvatarProps {
@@ -84,7 +85,7 @@ export const ChatWrapper = styled.div<ChatWrapperProps>`
   ${({ messageHighlight }) => messageHighlight && `
     background-color: #fef9f1;
     border-left: 2px solid ${colorSelectedCorrectAnswerText};
-    border-radius: 0px 3px 3px 0px;
+    border-radius: 16px;
     padding: 8px 2px;
   `}
   ${({ isCustomPluginMessage }) => isCustomPluginMessage && `
@@ -97,12 +98,17 @@ export const ChatMessageContentWrapper = styled.div<ChatMessageContentWrapperPro
   display: flex;
   flex-flow: column;
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 20px !important;
   position: relative;
   border: 1px solid transparent;
 
+  ${({ sameSender, $isSystemSender, $own }) => !$isSystemSender && !sameSender && `
+    border-top-left-radius: ${$own ? '20px' : '4px'} !important;
+    border-top-right-radius: ${$own ? '4px' : '20px'} !important;
+  `}
+
   ${({ $isSystemSender, isCustomPluginMessage }) => !$isSystemSender && !isCustomPluginMessage
-  && `
+    && `
     background-color: #f4f6fa;
   `}
 
@@ -142,7 +148,7 @@ export const ChatContentFooter = styled.div`
   font-size: 95%;
   display: flex;
   background-color: inherit;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 
   [dir="rtl"] & {
     left: 0.25rem;
@@ -199,7 +205,7 @@ export const ChatAvatar = styled.div<ChatAvatarProps>`
     background-color: ${colorSuccess};
     color: ${colorWhite};
     opacity: 0;
-    font-family: 'bbb-icons';
+    font-family: 'ilmify-icons';
     font-size: .65rem;
     line-height: 0;
     text-align: center;

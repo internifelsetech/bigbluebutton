@@ -117,7 +117,7 @@ const PresentationTitle = styled.div`
     margin-right: ${smPaddingX};
   }
 
-  & > [class^='icon-bbb-'] {
+  & > [class^='icon-ilmify-'] {
     font-size: 75%;
   }
 

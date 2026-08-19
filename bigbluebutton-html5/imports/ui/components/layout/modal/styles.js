@@ -91,7 +91,7 @@ const LayoutBtn = styled(Button)`
     }
 
     &:before {
-      font-family: 'bbb-icons';
+      font-family: 'ilmify-icons';
       color: ${colorWhite};
       position: fixed;
       content: "\\e946";

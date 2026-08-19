@@ -10,7 +10,9 @@ const CaptionsWrapper = styled.div`
   user-select:none;
 `;
 
-const Layout = styled(FlexColumn)``;
+const Layout = styled(FlexColumn)`
+  background-color: #0d0e12;
+`;
 
 const DtfInvert = `
   body {

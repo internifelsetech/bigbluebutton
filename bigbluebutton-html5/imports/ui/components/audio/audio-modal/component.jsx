@@ -451,7 +451,19 @@ const AudioModal = ({
                 label={intl.formatMessage(intlMessages.microphoneLabel)}
                 data-test="microphoneBtn"
                 aria-describedby="mic-description"
-                icon="unmute"
+                customIcon={(
+                  <i style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
+                    <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 5a3 3 0 0 1 6 0v6a3 3 0 0 1-6 0V5z"></path>
+                      <line x1="9" y1="5" x2="15" y2="5"></line>
+                      <line x1="9" y1="8" x2="15" y2="8"></line>
+                      <line x1="9" y1="11" x2="15" y2="11"></line>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                  </i>
+                )}
                 circle
                 size="jumbo"
                 disabled={audioLocked}
@@ -472,7 +484,14 @@ const AudioModal = ({
                 label={intl.formatMessage(intlMessages.listenOnlyLabel)}
                 data-test="listenOnlyBtn"
                 aria-describedby="listenOnly-description"
-                icon="listen"
+                customIcon={(
+                  <i style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
+                    <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                    </svg>
+                  </i>
+                )}
                 circle
                 size="jumbo"
                 onClick={handleJoinListenOnly}

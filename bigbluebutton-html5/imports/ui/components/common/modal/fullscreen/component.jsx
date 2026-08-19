@@ -77,7 +77,12 @@ class ModalFullscreen extends PureComponent {
   componentDidUpdate(prevProps) {
     const { isOpen } = this.props;
     if (!prevProps.isOpen && isOpen) {
-      this.previousFocus = document.activeElement;
+      // Blur the currently focused element BEFORE the modal marks the background
+      // as aria-hidden, preventing the browser accessibility warning.
+      if (document.activeElement && document.activeElement !== document.body) {
+        this.previousFocus = document.activeElement;
+        document.activeElement.blur();
+      }
     }
     this.updateDocumentTitleView();
   }

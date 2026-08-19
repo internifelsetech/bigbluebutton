@@ -14,6 +14,29 @@ const TldrawV2GlobalStyle = createGlobalStyle`
     }
   `}
 
+  /* Override Tldraw's default blue for selected tools to Ilmify Green */
+  .tlui-button[data-state="selected"],
+  .tlui-button[data-state="active"],
+  .tlui-button[data-state="checked"],
+  .tlui-button[aria-checked="true"],
+  .tlui-button[aria-pressed="true"] {
+    background-color: #7ca82b !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    margin: 2px !important;
+    width: calc(100% - 4px) !important;
+    height: calc(100% - 4px) !important;
+  }
+
+  /* Some Tldraw sub-elements (like icons inside selected buttons) might need to inherit color */
+  .tlui-button[data-state="selected"] *,
+  .tlui-button[data-state="active"] *,
+  .tlui-button[data-state="checked"] *,
+  .tlui-button[aria-checked="true"] *,
+  .tlui-button[aria-pressed="true"] * {
+    color: #ffffff !important;
+  }
+
   ${({ isToolbarVisible }) => (!isToolbarVisible) && `
     .tlui-toolbar,
     .tlui-style-panel__wrapper {
@@ -47,6 +70,13 @@ const TldrawV2GlobalStyle = createGlobalStyle`
 
   .tl-container:focus-within {
     outline: none !important;
+  }
+
+  .tl-container {
+    --color-primary: #7ca82b !important;
+    --color-selected: #7ca82b !important;
+    --color-focus: #7ca82b !important;
+    --color-text-primary: #ffffff !important;
   }
 
   .tlui-style-panel__wrapper {
@@ -86,10 +116,10 @@ const TldrawV2GlobalStyle = createGlobalStyle`
   `;
   }}
 
-  .tlui-toolbar__extras {
-    position: fixed !important;
-    top: 2px !important;
-    
+  .tlui-toolbar__extras, .tlui-layout__top {
+    position: absolute !important;
+    top: 16px !important;
+    margin-top: 16px !important;
   }
 
   .tlui-toolbar__extras__controls {
@@ -103,15 +133,15 @@ const TldrawV2GlobalStyle = createGlobalStyle`
 
   ${({ isRTL }) => (!isRTL) && `
     .tlui-toolbar__extras {
-      right: 0;
-      left: 50px !important;
+      right: 16px !important;
+      left: auto !important;
     }
   `}
 
   ${({ isRTL }) => (isRTL) && `
     .tlui-toolbar__extras {
-      right: 50px !important;
-      left: 0;
+      left: 16px !important;
+      right: auto !important;
     }
 
     .tlui-toolbar__extras__controls {
@@ -171,7 +201,7 @@ const TldrawV2GlobalStyle = createGlobalStyle`
   .tlui-layout__bottom {
     grid-row: auto / auto !important;
     position: absolute !important;
-    right: 10px !important;
+    right: 16px !important;
   }
 
   .tlui-kbd > span {

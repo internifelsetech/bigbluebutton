@@ -7,6 +7,7 @@ import Styled from './styles';
 import UserAvatar from '/imports/ui/components/user-avatar/component';
 import { ACTIONS, PANELS } from '../../layout/enums';
 import Icon from '/imports/ui/components/common/icon/component';
+import { stringToColor } from '/imports/utils/string-utils';
 
 const DEBOUNCE_TIME = 1000;
 
@@ -165,7 +166,7 @@ const ChatListItem = ({
               <UserAvatar
                 moderator={chat.isModerator}
                 avatar={chat?.avatar || ''}
-                color={chat.color}
+                color={stringToColor(chat.userId || chat.name)}
               >
                 {chat.name.toLowerCase().slice(0, 2)}
               </UserAvatar>

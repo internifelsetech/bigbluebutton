@@ -28,7 +28,6 @@ import EmojiRainContainer from '../emoji-rain/container';
 import Styled from './styles';
 import LayoutEngine from '../layout/layout-manager/layoutEngine';
 import NavBarContainer from '../nav-bar/container';
-import SidebarNavigationContainer from '../sidebar-navigation/container';
 import SidebarContentContainer from '../sidebar-content/container';
 import PluginsEngineManager from '../plugins-engine/manager';
 import Notifications from '../notifications/component';
@@ -369,7 +368,6 @@ class App extends Component {
           <ScreenReaderAlertContainer />
           <BannerBarContainer />
           <NotificationsBarContainer />
-          <SidebarNavigationContainer />
           <SidebarContentContainer isSharedNotesPinned={isSharedNotesPinned} />
           <NavBarContainer main="new" />
           <WebcamContainer />

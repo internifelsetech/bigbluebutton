@@ -130,7 +130,7 @@ const WaitingUsersButtonMsg = styled(Button)`
   color: ${colorPrimary};
 
   &:after {
-    font-family: 'bbb-icons';
+    font-family: 'ilmify-icons';
     content: "\\E910";
   }
 
@@ -316,7 +316,7 @@ const Avatar = styled.div<AvatarProps>`
     background-color: ${colorSuccess};
     color: ${colorWhite};
     opacity: 0;
-    font-family: 'bbb-icons';
+    font-family: 'ilmify-icons';
     font-size: .65rem;
     line-height: 0;
     text-align: center;

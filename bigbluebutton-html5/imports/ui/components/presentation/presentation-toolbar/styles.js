@@ -1,317 +1,210 @@
 import styled from 'styled-components';
 import QuickPollDropdownContainer from '/imports/ui/components/actions-bar/quick-poll-dropdown/container';
 import {
-  colorBorder,
-  colorOffWhite,
-  toolbarButtonColor,
   colorDanger,
   colorWhite,
-  colorGrayDark,
   toolbarButtonColorDisabled,
 } from '/imports/ui/stylesheets/styled-components/palette';
 import {
-  whiteboardToolbarMargin,
-  whiteboardToolbarPaddingSm,
-  whiteboardToolbarPadding,
   borderSize,
   smPaddingY,
-  borderSizeLarge,
   smPaddingX,
 } from '/imports/ui/stylesheets/styled-components/general';
 import Button from '/imports/ui/components/common/button/component';
+import { mediumDown } from '/imports/ui/stylesheets/styled-components/breakpoints';
 
 const PresentationToolbarWrapper = styled.div`
   position: absolute;
-  align-self: center;
-  z-index: 1;
-  background-color: ${colorOffWhite};
-  border-top: 1px solid ${colorBorder};
-  min-width: fit-content;
-  width: 100%;
-  bottom: 0px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(13, 14, 18, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  min-width: 340px;
+  max-width: 340px;
+  color: #cbd5e1;
 
-  select {
-    &:-moz-focusring {
-      outline: none;
-    }
-    border: 0;
-    background-color: ${colorOffWhite};
-    color: ${toolbarButtonColor};
-    cursor: pointer;
-    margin: 0 ${whiteboardToolbarMargin} 0 0;
-    padding: ${whiteboardToolbarPadding};
-    padding-left: ${whiteboardToolbarPaddingSm};
-
-    [dir="rtl"] & {
-      margin: 0 0 0 ${whiteboardToolbarMargin};
-      padding: ${whiteboardToolbarPadding};
-      padding-right: ${whiteboardToolbarPaddingSm};
-    }
-
-    & > option {
-      color: ${toolbarButtonColor};
-      background-color: ${colorOffWhite};
-    }
+  @media ${mediumDown} {
+    bottom: 8px;
   }
 
-  i {
-    color: ${toolbarButtonColor};
+  & > *:empty {
+    display: none;
+  }
+
+  & > div[hidden] {
+    display: none !important;
+  }
+
+  /* Force icon colors for children to be light */
+  button, [role="button"], [data-test="quickPollBtn"] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #94a3b8 !important;
+    min-width: auto;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    border-radius: 12px !important;
+    
+    & span {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    
+    i {
+      color: #94a3b8 !important;
+      font-size: 1.1rem !important;
+      transition: color 0.2s, transform 0.1s;
+    }
+    
+    &:hover,
+    &:active,
+    &[aria-pressed="true"],
+    &.active {
+      background-color: #7ca82b !important;
+      border-color: #7ca82b !important;
+    }
+
+    &:hover i,
+    &:active i,
+    &[aria-pressed="true"] i,
+    &.active i {
+      color: #ffffff !important;
+    }
+
+    &:active i {
+      transform: scale(0.95);
+    }
+
+    &:disabled, &[disabled] {
+      background-color: transparent !important;
+      cursor: not-allowed;
+    }
+
+    &:disabled i, &[disabled] i {
+      color: rgba(148, 163, 184, 0.4) !important;
+    }
+  }
+`;
+
+const QuickPollButtonWrapper = styled.div`
+  display: contents;
+  min-width: 0;
+
+  &:empty {
+    display: none;
   }
 `;
 
 const QuickPollButton = styled(QuickPollDropdownContainer)`
   position: relative;
-  color: ${toolbarButtonColor};
-  background-color: ${colorOffWhite};
-  border-radius: 0;
+  background-color: transparent !important;
+  border: none !important;
   box-shadow: none !important;
-  border: 0;
-
-  &:focus {
-    background-color: ${colorOffWhite};
-  }
-`;
-
-const QuickPollButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  padding: 0 !important;
 `;
 
 const PresentationSlideControls = styled.div`
-  justify-content: center;
-  padding-left: ${whiteboardToolbarPadding};
-  padding-right: ${whiteboardToolbarPadding};
   display: flex;
-  flex-direction: row;
   align-items: center;
-
-  & > button {
-    padding: ${whiteboardToolbarPadding};
+  gap: 4px;
+  &:empty {
+    display: none;
   }
 `;
 
-const PrevSlideButton = styled(Button)`
-  i {
-    font-size: 1rem;
-    padding-left: 20%;
+const PrevSlideButton = styled(Button)``;
 
-    [dir="rtl"] & {
-      -webkit-transform: scale(-1, 1);
-      -moz-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-      -o-transform: scale(-1, 1);
-      transform: scale(-1, 1);
-    }
-  }
-`;
-
-const NextSlideButton = styled(Button)`
-  i {
-    font-size: 1rem;
-    padding-left: 60%;
-    
-    [dir="rtl"] & {
-      -webkit-transform: scale(-1, 1);
-      -moz-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-      -o-transform: scale(-1, 1);
-      transform: scale(-1, 1);
-    }
-  }
-`;
+const NextSlideButton = styled(Button)``;
 
 const SkipSlideSelect = styled.select`
-  padding: 0 ${smPaddingY};
-  margin: ${borderSize};
-  margin-left: ${whiteboardToolbarMargin};
-
-  [dir="rtl"] & {
-    margin: ${borderSize};
-    margin-right: ${whiteboardToolbarMargin};
-  }
-
+  background: transparent;
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  
   &:-moz-focusring {
     outline: none;
   }
-
-  &:focus,
-  &:hover {
-    outline: transparent;
-    outline-style: dotted;
-    outline-width: ${borderSize};
-    background-color: #DCE4EC;
-    border-radius: 4px;
+  &:focus, &:hover {
+    outline: none;
+    color: #ffffff;
   }
-
-  &:focus {
-    outline-style: solid;
-    box-shadow: 0 0 0 1px #cdd6e0 !important;
+  & > option {
+    color: #1e293b;
+    background-color: #ffffff;
   }
 `;
 
 const PresentationZoomControls = styled.div`
-  justify-content: flex-end;
-  padding: 0 ${whiteboardToolbarPadding} 0 0;
-
-  [dir="rtl"] & {
-    padding: 0 0 0 ${whiteboardToolbarPadding};
-  }
-
   display: flex;
-  flex-direction: row;
   align-items: center;
-
-  button {
-    padding: ${whiteboardToolbarPadding};
+  gap: 4px;
+  &:empty {
+    display: none;
   }
 
-  i {
-    font-size: 1.2rem;
+  /* Separator — keep margin symmetric so no left-bias */
+  &::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 0 2px;
+    flex-shrink: 0;
   }
 `;
 
 const FitToWidthButton = styled(Button)`
-  border: none !important;
-
-  & > i {
-    font-size: 1.2rem;
-
-    [dir="rtl"] & {
-      -webkit-transform: scale(-1, 1);
-      -moz-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-      -o-transform: scale(-1, 1);
-      transform: scale(-1, 1);
-    }
-  }
-
-  margin-left: ${whiteboardToolbarMargin};
-  margin-right: ${whiteboardToolbarMargin};
-
-  position: relative;
-  color: ${toolbarButtonColor};
-  background-color: ${colorOffWhite};
-  border-radius: 0;
-  box-shadow: none !important;
-  border: 0;
-
   ${({ $fitToWidth }) => $fitToWidth && `
-    & > span {
-      border: solid ${borderSizeLarge} ${colorGrayDark};
-    }
+    background-color: #7ca82b !important;
+    i { color: #ffffff !important; }
   `}
-
-  &:focus {
-    background-color: ${colorOffWhite};
-    border: 0;
-  }
 `;
+
+const WBAccessButton = styled(Button)``;
+
+const InfiniteWhiteboardButton = styled(Button)``;
 
 const MultiUserTool = styled.span`
   background-color: ${colorDanger};
   border-radius: 50%;
   width: 1rem;
   height: 1rem;
-  position: relative;
-  z-index: 2;
-  bottom: 0.5rem;
+  position: absolute;
+  top: -4px;
+  right: -4px;
   color: ${colorWhite};
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px ${borderSizeLarge} ${colorGrayDark};
-  font-size: ${smPaddingX};
+  font-size: 9px;
+  font-weight: bold;
   user-select: none;
   cursor: pointer;
-
-  [dir="ltr"] & {
-    right: 1rem;
-  }
-
-  [dir="rtl"] & {
-    left: 1rem;
-  }
 `;
 
 const MUTPlaceholder = styled.div`
-  width: 1rem;
-  height: 1rem;
-  position: relative;
-  bottom: 0.5rem;
-
-  [dir="ltr"] & {
-    right: 1rem;
-  }
-
-  [dir="rtl"] & {
-    left: 1rem;
-  }
-`;
-
-const WBAccessButton = styled(Button)`
-  border: none !important;
-
-  i {
-    font-size: 1.2rem;
-
-    [dir="rtl"] & {
-      -webkit-transform: scale(-1, 1);
-      -moz-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-      -o-transform: scale(-1, 1);
-      transform: scale(-1, 1);
-    }
-  }
-
-  position: relative;
-  color: ${toolbarButtonColor};
-  background-color: ${colorOffWhite};
-  border-radius: 0;
-  box-shadow: none !important;
-  border: 0;
-
-  &:focus {
-    background-color: ${colorOffWhite};
-    border: 0;
-  }
-
-  &:disabled {
-    color: ${toolbarButtonColorDisabled};
-  }
-`;
-
-const InfiniteWhiteboardButton = styled(Button)`
-  border: none !important;
-
-  svg {
-    [dir="rtl"] & {
-      -webkit-transform: scale(-1, 1);
-      -moz-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
-      -o-transform: scale(-1, 1);
-      transform: scale(-1, 1);
-    }
-  }
-
-  position: relative;
-  color: ${toolbarButtonColor};
-  background-color: ${colorOffWhite};
-  border-radius: 0;
-  box-shadow: none !important;
-  border: 0;
-  margin-left: 2px;
-  margin-right: 2px;
-
-  &:focus {
-    background-color: ${colorOffWhite};
-    border: 0;
-  }
+  display: none;
 `;
 
 export default {

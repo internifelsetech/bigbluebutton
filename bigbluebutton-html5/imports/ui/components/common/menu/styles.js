@@ -140,10 +140,46 @@ const BBBMenuInformation = styled.div`
 const BBBMenuItem = styled(MenuItem)`
   transition: none !important;
   font-size: 90% !important;
+
+  /* Specific Icon Colors to match the new UI requirements */
+  i[class*="icon-ilmify-download"],
+  i[class*="icon-ilmify-upload"],
+  i[class*="icon-ilmify-external-video"],
+  i[class*="icon-ilmify-manage_layout"],
+  i[class*="icon-ilmify-file"] {
+    color: #9C27B0 !important;
+  }
+  
+  i[class*="icon-ilmify-copy"],
+  i[class*="icon-ilmify-edit"],
+  i[class*="icon-ilmify-settings"],
+  i[class*="icon-ilmify-polling"],
+  i[class*="icon-ilmify-time"],
+  i[class*="icon-ilmify-shortcuts"] {
+    color: #FFB300 !important;
+  }
+  
+  i[class*="icon-ilmify-delete"],
+  i[class*="icon-ilmify-trash"],
+  i[class*="icon-ilmify-clear"],
+  i[class*="icon-ilmify-logout"],
+  i[class*="icon-ilmify-close"] {
+    color: #EF4444 !important;
+  }
+
+  i[class*="icon-ilmify-about"],
+  i[class*="icon-ilmify-help"],
+  i[class*="icon-ilmify-fullscreen"],
+  i[class*="icon-ilmify-exit_fullscreen"],
+  i[class*="icon-ilmify-presentation"],
+  i[class*="icon-ilmify-video"],
+  i[class*="icon-ilmify-closed_caption"] {
+    color: #3B82F6 !important;
+  }
   
   &:focus,
   &:hover {
-    i { 
+    i, i[class*="icon-ilmify-"] { 
       color: #FFF !important;
     }
     color: #FFF !important;

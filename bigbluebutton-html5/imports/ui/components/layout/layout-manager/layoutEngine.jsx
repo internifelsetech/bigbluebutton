@@ -155,11 +155,11 @@ const LayoutEngine = () => {
     }
 
     return {
-      width: mediaAreaBounds.width,
+      width: windowWidth(),
       height: navBarHeight,
       top: navBarTop + bannerAreaHeight(),
-      left: !isRTL ? mediaAreaBounds.left : 0,
-      zIndex: 1,
+      left: 0,
+      zIndex: 10,
     };
   };
 
@@ -189,46 +189,21 @@ const LayoutEngine = () => {
 
     return {
       display: actionbarInput.hasActionBar,
-      width: mediaAreaBounds.width,
+      width: windowWidth(),
       height: actionBarHeight.height,
       innerHeight: actionBarHeight.innerHeight,
       padding: actionBarHeight.padding,
       top: windowHeight() - actionBarHeight.height,
-      left: !isRTL ? mediaAreaBounds.left : 0,
-      zIndex: 1,
+      left: 0,
+      zIndex: 10,
     };
   };
 
   const calculatesSidebarNavWidth = () => {
-    const {
-      sidebarNavMinWidth,
-      sidebarNavMaxWidth,
-    } = DEFAULT_VALUES;
-
-    const { isOpen, width: sidebarNavWidth } = sidebarNavigationInput;
-
-    let minWidth = 0;
-    let width = 0;
-    let maxWidth = 0;
-    if (isOpen) {
-      if (isMobile) {
-        minWidth = windowWidth();
-        width = windowWidth();
-        maxWidth = windowWidth();
-      } else {
-        if (sidebarNavWidth === 0) {
-          width = min(max((windowWidth() * 0.2), sidebarNavMinWidth), sidebarNavMaxWidth);
-        } else {
-          width = min(max(sidebarNavWidth, sidebarNavMinWidth), sidebarNavMaxWidth);
-        }
-        minWidth = sidebarNavMinWidth;
-        maxWidth = sidebarNavMaxWidth;
-      }
-    }
     return {
-      minWidth,
-      width,
-      maxWidth,
+      minWidth: 0,
+      width: 0,
+      maxWidth: 0,
     };
   };
 
@@ -236,12 +211,13 @@ const LayoutEngine = () => {
     const { navBarHeight } = DEFAULT_VALUES;
     const { isOpen } = sidebarNavigationInput;
 
+    const actionBarHeight = calculatesActionbarHeight().height;
     let sidebarNavHeight = 0;
     if (isOpen) {
       if (isMobile) {
         sidebarNavHeight = windowHeight() - navBarHeight - bannerAreaHeight();
       } else {
-        sidebarNavHeight = windowHeight() - bannerAreaHeight();
+        sidebarNavHeight = windowHeight() - bannerAreaHeight() - navBarHeight - actionBarHeight;
       }
     }
     return sidebarNavHeight;
@@ -250,7 +226,7 @@ const LayoutEngine = () => {
   const calculatesSidebarNavBounds = () => {
     const { sidebarNavTop, navBarHeight, sidebarNavLeft } = DEFAULT_VALUES;
 
-    let top = sidebarNavTop + bannerAreaHeight();
+    let top = sidebarNavTop + bannerAreaHeight() + navBarHeight;
 
     if (isMobile) {
       top = navBarHeight + bannerAreaHeight();
@@ -284,7 +260,7 @@ const LayoutEngine = () => {
       } else {
         if (sidebarContentWidth === 0) {
           width = min(
-            max((windowWidth() * 0.2), sidebarContentMinWidth), sidebarContentMaxWidth,
+            max((windowWidth() * 0.25), sidebarContentMinWidth), sidebarContentMaxWidth,
           );
         } else {
           width = min(max(sidebarContentWidth, sidebarContentMinWidth),
@@ -304,12 +280,12 @@ const LayoutEngine = () => {
   const calculatesSidebarContentBounds = (sidebarNavWidth) => {
     const { navBarHeight, sidebarNavTop } = DEFAULT_VALUES;
 
-    let top = sidebarNavTop + bannerAreaHeight();
+    let top = sidebarNavTop + bannerAreaHeight() + DEFAULT_VALUES.navBarHeight + 12;
 
-    if (isMobile) top = navBarHeight + bannerAreaHeight();
+    if (isMobile) top = DEFAULT_VALUES.navBarHeight + bannerAreaHeight() + 12;
 
-    let left = isMobile ? 0 : sidebarNavWidth;
-    let right = isMobile ? 0 : sidebarNavWidth;
+    let left = isMobile ? 0 : sidebarNavWidth + 12;
+    let right = isMobile ? 0 : sidebarNavWidth + 12;
     left = !isRTL ? left : null;
     right = isRTL ? right : null;
 
@@ -323,7 +299,7 @@ const LayoutEngine = () => {
     };
   };
 
-  const calculatesMediaAreaBounds = (sidebarNavWidth, sidebarContentWidth, margin = 0) => {
+  const calculatesMediaAreaBounds = (sidebarNavWidth, sidebarContentWidth, margin = 12) => {
     const { height: actionBarHeight } = calculatesActionbarHeight();
     const navBarHeight = calculatesNavbarHeight();
 
@@ -337,10 +313,10 @@ const LayoutEngine = () => {
     }
 
     return {
-      width: width - (2 * margin),
+      width: isMobile ? width - (2 * margin) : width - (3 * margin),
       height: windowHeight() - (navBarHeight + actionBarHeight + bannerAreaHeight() + (2 * margin)),
       top: navBarHeight + bannerAreaHeight() + margin,
-      left: left + margin,
+      left: isMobile ? left + margin : (!isRTL ? left + (2 * margin) : left + margin),
     };
   };
 

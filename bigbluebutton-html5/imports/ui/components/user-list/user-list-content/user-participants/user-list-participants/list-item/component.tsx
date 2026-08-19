@@ -12,7 +12,7 @@ import { User } from '/imports/ui/Types/user';
 import TooltipContainer from '/imports/ui/components/common/tooltip/container';
 import Auth from '/imports/ui/services/auth';
 import { LockSettings } from '/imports/ui/Types/meeting';
-import { uniqueId } from '/imports/utils/string-utils';
+import { uniqueId, stringToColor } from '/imports/utils/string-utils';
 import { convertRemToPixels } from '/imports/utils/dom-utils';
 import { PluginsContext } from '/imports/ui/components/components-data/plugin-context/context';
 import { useIsReactionsEnabled } from '/imports/ui/services/features';
@@ -270,7 +270,7 @@ const UserListItem: React.FC<UserListItemProps> = ({ user, lockSettings, index }
         listenOnly={voiceUser?.listenOnly || voiceUser?.listenOnlyInputDevice}
         voice={voiceUser?.joined && !voiceUser?.deafened}
         noVoice={!voiceUser?.joined || voiceUser?.deafened}
-        color={user.color}
+        color={stringToColor(user.userId || user.name)}
         whiteboardAccess={hasWhiteboardAccess}
         animations={animations}
         avatar={userAvatarFiltered}

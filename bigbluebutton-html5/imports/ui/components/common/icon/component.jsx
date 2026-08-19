@@ -14,7 +14,7 @@ const propTypes = {
 
 const Icon = ({
   className = '',
-  prependIconName = 'icon-bbb-',
+  prependIconName = 'icon-ilmify-',
   iconName,
   rotate = false,
   color = undefined,

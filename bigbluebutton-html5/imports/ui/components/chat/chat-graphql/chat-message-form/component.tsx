@@ -194,7 +194,7 @@ const ChatMessageForm: React.FC<ChatMessageFormProps> = ({
   useEffect(() => {
     setMessageHint();
     if (!isMobile) {
-      if (textAreaRef?.current) textAreaRef.current.textarea.focus();
+      if (textAreaRef?.current) textAreaRef.current.textarea.focus({ preventScroll: true });
     }
 
     return () => {
@@ -249,7 +249,7 @@ const ChatMessageForm: React.FC<ChatMessageFormProps> = ({
     setMessage(unsentMessage);
 
     if (!isMobile) {
-      if (textAreaRef?.current) textAreaRef.current.textarea.focus();
+      if (textAreaRef?.current) textAreaRef.current.textarea.focus({ preventScroll: true });
     }
     setError(null);
     setHasErrors(false);
@@ -266,7 +266,7 @@ const ChatMessageForm: React.FC<ChatMessageFormProps> = ({
       && document.activeElement !== textAreaRef.current.textarea;
 
     if (shouldRestoreFocus) {
-      textAreaRef.current.textarea.focus();
+      textAreaRef.current.textarea.focus({ preventScroll: true });
     }
   }, [chatSendMessageLoading, textAreaRef.current]);
 

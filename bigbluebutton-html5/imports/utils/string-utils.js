@@ -47,22 +47,36 @@ export const safeMatch = (regex, content, defaultValue) => {
   return content.match(regex) || defaultValue;
 };
 
-export const lowercaseTrim = (text) => {
-  return text.trim().toLowerCase();
-}
+export const lowercaseTrim = (text) => text.trim().toLowerCase();
 
-export const upperFirst = (string) => {
-  return string ? string.charAt(0).toUpperCase() + string.slice(1) : '';
-}
+export const upperFirst = (string) => (string ? string.charAt(0).toUpperCase() + string.slice(1) : '');
 
 export const uniqueId = (() => {
   let num = 0;
   return function (prefix) {
-      prefix = String(prefix) || '';
-      num += 1;
-      return prefix + num;
-  }
+    prefix = String(prefix) || '';
+    num += 1;
+    return prefix + num;
+  };
 })();
+
+export const stringToColor = (str) => {
+  if (!str) return '#1e293b'; // default dark slate
+  const palette = [
+    '#F87171', '#FB923C', '#FBBF24', '#A3E635', '#4ADE80', '#34D399',
+    '#2DD4BF', '#22D3EE', '#38BDF8', '#60A5FA', '#818CF8', '#A78BFA',
+    '#C084FC', '#E879F9', '#F472B6', '#FB7185', '#E11D48', '#DB2777',
+    '#C026D3', '#9333EA', '#7C3AED', '#4F46E5', '#2563EB', '#0284C7',
+    '#0891B2', '#0D9488', '#059669', '#16A34A', '#4D7C0F', '#D97706',
+    '#EA580C', '#DC2626',
+  ];
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % palette.length;
+  return palette[index];
+};
 
 export default {
   capitalizeFirstLetter,
@@ -75,4 +89,5 @@ export default {
   lowercaseTrim,
   upperFirst,
   uniqueId,
+  stringToColor,
 };

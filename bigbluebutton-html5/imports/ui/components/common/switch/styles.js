@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { borderSize } from '/imports/ui/stylesheets/styled-components/general';
-import { colorDanger, colorSuccess } from '/imports/ui/stylesheets/styled-components/palette';
+import { colorWhite, colorDanger, colorSuccess } from '/imports/ui/stylesheets/styled-components/palette';
 
 const Switch = styled.div`
   &:hover,
@@ -44,15 +44,18 @@ const Switch = styled.div`
 `;
 
 const ToggleTrack = styled.div`
+  position: relative;
   overflow: hidden;
-  width: 3.5rem;
+  width: 2.75rem;
   height: 1.5rem;
   padding: 0;
-  border-radius: 2rem;
-  background-color: ${colorDanger};
+  border-radius: 1.5rem;
+  background-color: ${colorWhite};
+  border: 1px solid var(--color-gray-lightest, #D4D9DF);
+  box-sizing: border-box;
 
   [dir="rtl"] & {
-    width: 4rem;
+    width: 2.75rem;
   }
 
   ${({ animations }) => animations && `
@@ -60,82 +63,48 @@ const ToggleTrack = styled.div`
   `}
 
   ${({ checked }) => checked && `
-    background-color: ${colorSuccess};
+    background-color: var(--color-primary, #589E00);
+    border-color: var(--color-primary, #589E00);
   `}
 
   ${({ invertColors, checked }) => invertColors && !checked && `
-    background-color: ${colorSuccess} !important;
+    background-color: var(--color-primary, #589E00) !important;
+    border-color: var(--color-primary, #589E00) !important;
   `}
 
   ${({ invertColors, checked }) => invertColors && checked && `
-    background-color: ${colorDanger} !important;
+    background-color: ${colorWhite} !important;
+    border-color: var(--color-gray-lightest, #D4D9DF) !important;
   `}
 
 `;
 
 const ToggleTrackCheck = styled.div`
-  position: absolute;
-  color: white;
-  width: 1rem;
-  line-height: 1.5rem;
-  font-size: 0.8rem;
-  left: 0.5rem;
-  opacity: 0;
-
-  [dir="rtl"] & {
-    left: 0.8rem;
-  }
-
-  ${({ animations }) => animations && `
-    transition: opacity 0.25s ease;
-  `}
-
-  ${({ checked }) => checked && `
-    opacity: 1;
-    transition: opacity calc(var(--enableAnimation) * 0.25s) ease;
-  `}
+  display: none;
 `;
 
 const ToggleTrackX = styled.div`
-  position: absolute;
-  color: white;
-  width: 1rem;
-  line-height: 1.5rem;
-  font-size: 0.8rem;
-  left: 1.7rem;
-  opacity: 1;
-
-  [dir="rtl"] & {
-    left: 2.2rem;
-  }
-
-  ${({ animations }) => animations && `
-    transition: opacity 0.25s ease;
-  `}
-
-  ${({ checked }) => checked && `
-    opacity: 0;
-  `}
+  display: none;
 `;
 
 const ToggleThumb = styled.div`
   position: absolute;
-  top: 1px;
-  left: ${({ isRTL }) => isRTL ? '2.6rem' : '1px'};
-  width: 1.35rem;
-  height: 1.35rem;
+  top: 0.15rem;
+  left: ${({ isRTL }) => (isRTL ? '1.45rem' : '0.15rem')};
+  width: 1.15rem;
+  height: 1.15rem;
   border-radius: 50%;
-  background-color: #FAFAFA;
+  background-color: #FFFFFF;
   box-sizing: border-box;
-  box-shadow: 2px 0px 10px -1px rgba(0,0,0,0.4);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
 
   ${({ animations }) => animations && `
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   `}
 
   ${({ checked }) => checked && css`
-    left: ${({ isRTL }) => isRTL ? '1px' : '2.1rem' };
-    box-shadow: -2px 0px 10px -1px rgba(0,0,0,0.4);
+    left: ${({ isRTL }) => (isRTL ? '0.15rem' : '1.45rem')};
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.3);
   `}
 
   ${({ hasFocus }) => hasFocus && `

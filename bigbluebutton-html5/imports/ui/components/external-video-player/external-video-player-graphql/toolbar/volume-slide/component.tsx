@@ -79,7 +79,7 @@ const VolumeSlide = React.forwardRef<HTMLInputElement, VolumeSlideProps>(({
       >
         <i
           tabIndex={-1}
-          className={`icon-bbb-${getVolumeIcon()}`}
+          className={`icon-ilmify-${getVolumeIcon()}`}
         />
       </Styled.Volume>
       <Styled.VolumeSlider

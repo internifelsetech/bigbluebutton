@@ -9,12 +9,13 @@ import { landscape, mediumUp } from '/imports/ui/stylesheets/styled-components/b
 
 const DropdownTrigger = styled(DivElipsis)<{
   $isRTL: boolean;
+  $avatarColor?: string;
 }>`
   user-select: none;
   position: relative;
-  // Keep the background with 0.5 opacity, but leave the text with 1
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  // Use avatar color or fallback to translucent black
+  background-color: ${({ $avatarColor }) => $avatarColor || 'rgba(0, 0, 0, 0.5)'};
+  border-radius: .35rem;
   color: ${colorOffWhite};
   padding: 0 1rem 0 .5rem !important;
   font-size: 80%;
@@ -54,11 +55,12 @@ const UserName = styled(TextElipsis)<{
 
 const Dropdown = styled.div<{
   $isFirefox: boolean;
+  $avatarColor?: string;
 }>`
   display: flex;
   outline: none !important;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background-color: ${({ $avatarColor }) => $avatarColor || 'rgba(0, 0, 0, 0.5)'};
+  border-radius: .35rem;
   display: inline-block;
 
   @media ${mediumUp} {

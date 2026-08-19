@@ -6,6 +6,7 @@ import { convertRemToPixels } from '/imports/utils/dom-utils';
 import { SET_REACTION_EMOJI } from '/imports/ui/core/graphql/mutations/userMutations';
 import { useMutation } from '@apollo/client';
 import Styled from './styles';
+import { Smile } from 'lucide-react';
 
 const ReactionsButton = (props) => {
   const {
@@ -101,12 +102,12 @@ const ReactionsButton = (props) => {
     dataTest: 'remove-reaction',
   });
 
-  const svgIcon = currentUserReaction === 'none' ? 'reactions' : null;
-  const currentUserReactionEmoji = REACTIONS.find(({ native }) => native === currentUserReaction);
-
   let customIcon = null;
 
-  if (!svgIcon) {
+  if (currentUserReaction === 'none') {
+    customIcon = <Smile size={16} />;
+  } else {
+    const currentUserReactionEmoji = REACTIONS.find(({ native }) => native === currentUserReaction);
     customIcon = (
       <em-emoji
         key={currentUserReactionEmoji?.id}
@@ -123,13 +124,12 @@ const ReactionsButton = (props) => {
         <Styled.ReactionsDropdown id="interactionsButton">
           <Styled.ReactionsButton
             data-test="reactionsButton"
-            svgIcon={svgIcon}
             customIcon={customIcon}
             label={intl.formatMessage(intlMessages.reactionsLabel)}
             description="Reactions"
             onKeyPress={() => { }}
             onClick={() => setShowEmojiPicker(true)}
-            color={showEmojiPicker || customIcon ? 'primary' : 'default'}
+            color={showEmojiPicker || currentUserReaction !== 'none' ? 'primary' : 'default'}
             hideLabel
             circle
             size="lg"

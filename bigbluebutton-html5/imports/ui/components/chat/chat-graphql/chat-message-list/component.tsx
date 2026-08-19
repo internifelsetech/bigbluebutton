@@ -623,6 +623,20 @@ const ChatMessageList: React.FC<ChatListProps> = ({
                 tabIndex={hasMessageToolbar ? 0 : -1}
                 onKeyDown={rove}
               >
+                {firstPageToLoad === 0 && (
+                  <div style={{ position: 'relative' }}>
+                    <div style={{
+                      padding: '1rem 1.25rem', color: '#4E5A66', fontSize: '1.1rem', fontWeight: 500,
+                    }}
+                    >
+                      Welcome
+                    </div>
+                    <hr style={{
+                      margin: '0 0 1rem 0', borderColor: '#E4ECF2', borderStyle: 'solid', borderWidth: '1px 0 0 0',
+                    }}
+                    />
+                  </div>
+                )}
                 {Array.from({ length: pagesToLoad }, (_v, k) => k + (firstPageToLoad)).map((page) => {
                   return (
                     <ChatListPage

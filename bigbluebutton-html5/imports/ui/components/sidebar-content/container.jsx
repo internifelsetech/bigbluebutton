@@ -5,6 +5,7 @@ import { layoutSelectInput, layoutSelectOutput, layoutDispatch } from '../layout
 import {
   CURRENT_PRESENTATION_PAGE_SUBSCRIPTION,
 } from '/imports/ui/components/whiteboard/queries';
+import { USER_AGGREGATE_COUNT_SUBSCRIPTION } from '/imports/ui/core/graphql/queries/users';
 import useCurrentUser from '/imports/ui/core/hooks/useCurrentUser';
 import useDeduplicatedSubscription from '../../core/hooks/useDeduplicatedSubscription';
 
@@ -25,8 +26,13 @@ const SidebarContentContainer = (props) => {
     CURRENT_PRESENTATION_PAGE_SUBSCRIPTION,
   );
   const presentationPage = presentationPageData?.pres_page_curr[0] || {};
-
   const currentSlideId = presentationPage?.pageId;
+
+  // Live participant count for the Users tab badge
+  const { data: userCountData } = useDeduplicatedSubscription(
+    USER_AGGREGATE_COUNT_SUBSCRIPTION,
+  );
+  const userCount = userCountData?.user_aggregate?.aggregate?.count ?? 0;
 
   if (sidebarContentOutput.display === false) return null;
 
@@ -39,8 +45,10 @@ const SidebarContentContainer = (props) => {
       amIModerator={amIModerator}
       currentSlideId={currentSlideId}
       isSharedNotesPinned={isSharedNotesPinned}
+      userCount={userCount}
     />
   );
 };
 
 export default SidebarContentContainer;
+

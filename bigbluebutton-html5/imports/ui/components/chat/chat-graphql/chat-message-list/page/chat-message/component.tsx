@@ -54,6 +54,7 @@ import { isMobile } from '/imports/utils/deviceInfo';
 import { layoutSelect } from '/imports/ui/components/layout/context';
 import { Layout } from '/imports/ui/components/layout/layoutTypes';
 import { useModalRegistration } from '/imports/ui/core/singletons/modalController';
+import { stringToColor } from '/imports/utils/string-utils';
 
 interface ChatMessageProps {
   message: Message;
@@ -441,7 +442,7 @@ const ChatMessage = React.forwardRef<ChatMessageRef, ChatMessageProps>(({
           component: (
             <ChatPollContent metadata={message.messageMetadata} />
           ),
-          avatarIcon: 'icon-bbb-polling',
+          avatarIcon: 'icon-ilmify-polling',
           showAvatar: true,
           showHeading: true,
           showToolbar: false,
@@ -460,7 +461,7 @@ const ChatMessage = React.forwardRef<ChatMessageRef, ChatMessageProps>(({
               metadata={message.messageMetadata}
             />
           ),
-          avatarIcon: 'icon-bbb-download',
+          avatarIcon: 'icon-ilmify-download',
           showAvatar: true,
           showHeading: true,
           showToolbar: false,
@@ -559,7 +560,7 @@ const ChatMessage = React.forwardRef<ChatMessageRef, ChatMessageProps>(({
       case ChatMessageType.PLUGIN: {
         return {
           name: message.user?.name,
-          color: message.user?.color,
+          color: stringToColor(message.user?.userId || message.user?.name),
           isModerator: message.user?.isModerator,
           isSystemSender: false,
           showAvatar: true,
@@ -578,7 +579,7 @@ const ChatMessage = React.forwardRef<ChatMessageRef, ChatMessageProps>(({
       default:
         return {
           name: message.user?.name,
-          color: message.user?.color,
+          color: stringToColor(message.user?.userId || message.user?.name),
           isModerator: message.user?.isModerator,
           isSystemSender: false,
           showAvatar: true,
@@ -735,6 +736,7 @@ const ChatMessage = React.forwardRef<ChatMessageRef, ChatMessageProps>(({
       $keyboardFocused={keyboardFocused}
       $reactionPopoverIsOpen={isToolbarReactionPopoverOpen}
       $emphasizedMessage={message.chatEmphasizedText}
+      $own={message.user?.userId === currentUserId}
       role="listitem"
     >
       <ChatMessageToolbar

@@ -72,7 +72,7 @@ class VolumeSlider extends Component {
         <Styled.Volume onClick={() => this.setMuted(!muted)}>
           <i
             tabIndex="-1"
-            className={`icon-bbb-${this.getVolumeIcon()}`}
+            className={`icon-ilmify-${this.getVolumeIcon()}`}
           />
         </Styled.Volume>
         <Styled.VolumeSlider

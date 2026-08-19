@@ -192,7 +192,7 @@ export default class Button extends BaseButton {
         ghost={ghost}
         circle={circle}
         block={block}
-        className={className}
+        className={cx(size, color, className)}
         iconRight={iconRight}
         loading={loading}
         data-test={dataTest}
@@ -226,7 +226,7 @@ export default class Button extends BaseButton {
     return (
       <Styled.ButtonWrapper
         size={size}
-        className={cx(size, 'buttonWrapper', className)}
+        className={cx(size, color, 'buttonWrapper', className)}
         color={color}
         ghost={ghost}
         circle={circle}

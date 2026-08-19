@@ -43,7 +43,7 @@ const Content = styled.div<{
   position: relative;
   display: flex;
   min-width: 100%;
-  border-radius: 10px;
+  border-radius: .75rem;
   &::after {
     content: "";
     position: absolute;
@@ -53,7 +53,7 @@ const Content = styled.div<{
     left: 0;
     pointer-events: none;
     border: 2px solid ${colorBlack};
-    border-radius: 10px;
+    border-radius: .75rem;
 
     ${({ isStream }) => !isStream && `
       border: 2px solid ${webcamPlaceholderBorder};
@@ -109,7 +109,7 @@ const WebcamConnecting = styled.div<{
   height: 100%;
   width: 100%;
   min-width: 100%;
-  border-radius: 10px;
+  border-radius: .75rem;
   background-color: ${webcamBackgroundColor};
   z-index: 0;
 
@@ -162,7 +162,7 @@ const Video = styled.video<{
   width: calc(100% - 1px);
   object-fit: contain;
   background-color: ${colorBlack};
-  border-radius: 10px;
+  border-radius: .75rem;
 
   ${({ mirrored }) => mirrored && `
     transform: scale(-1, 1);
@@ -182,7 +182,7 @@ const VideoDisabled = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  border-radius: 10px;
+  border-radius: .75rem;
   z-index: 2;
   top: 40%;
   transform: translate(-50%, -50%);
@@ -213,10 +213,12 @@ const BottomBar = styled.div`
   justify-content: space-between;
 `;
 
-const SqueezedName = styled(TextElipsis)`
+const SqueezedName = styled(TextElipsis)<{
+  $avatarColor?: string;
+}>`
   color: ${colorWhite};
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  background-color: ${({ $avatarColor }) => $avatarColor || 'rgba(0, 0, 0, 0.5)'};
+  border-radius: .35rem;
   padding: 0 0.5rem;
   font-size: 80%;
   max-width: 100%;

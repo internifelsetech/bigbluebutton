@@ -15,7 +15,7 @@ const Icon: React.FC<IconProps> = ({
   ariaHidden,
   ariaLabel,
   className = '',
-  prependIconName = 'icon-bbb-',
+  prependIconName = 'icon-ilmify-',
   iconName = '',
   rotate = false,
 }) => {

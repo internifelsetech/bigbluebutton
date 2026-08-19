@@ -25,7 +25,7 @@ export const INITIAL_INPUT_STATE = {
     height: DEFAULT_VALUES.actionBarHeight,
   },
   sidebarNavigation: {
-    isOpen: true,
+    isOpen: false,
     width: 0,
     height: 0,
     browserWidth: 0,
@@ -37,7 +37,7 @@ export const INITIAL_INPUT_STATE = {
     width: 0,
     height: 0,
     browserWidth: 0,
-    sidebarContentPanel: DEFAULT_VALUES.sidebarContentPanel,
+    sidebarContentPanel: 'userlist',
     resizableEdge: {
       top: false,
       right: false,
@@ -137,7 +137,7 @@ export const INITIAL_OUTPUT_STATE = {
     right: 0,
   },
   sidebarNavigation: {
-    display: true,
+    display: false,
     minWidth: 0,
     width: 0,
     maxWidth: 0,
@@ -157,7 +157,7 @@ export const INITIAL_OUTPUT_STATE = {
     zIndex: 1,
   },
   sidebarContent: {
-    display: true,
+    display: false,
     minWidth: 0,
     width: 0,
     maxWidth: 0,

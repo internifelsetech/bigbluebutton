@@ -12,6 +12,7 @@ import Styled from './styles';
 import ErrorBoundary from '/imports/ui/components/common/error-boundary/component';
 import FallbackView from '/imports/ui/components/common/fallback-errors/fallback-view/component';
 import GenericContentSidekickContainer from '/imports/ui/components/generic-content/generic-sidekick-content/container';
+import UserListContainer from '/imports/ui/components/user-list/container';
 
 const propTypes = {
   top: PropTypes.number.isRequired,
@@ -47,6 +48,7 @@ const SidebarContent = (props) => {
     isSharedNotesPinned,
     currentSlideId,
     amIModerator,
+    userCount = 0,
   } = props;
 
   const [resizableWidth, setResizableWidth] = useState(width);
@@ -119,6 +121,12 @@ const SidebarContent = (props) => {
         zIndex,
         width,
         height,
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#ffffff',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        borderRadius: '16px',
+        overflow: 'clip',
       }}
       handleStyles={{
         left: {
@@ -135,14 +143,76 @@ const SidebarContent = (props) => {
         },
       }}
     >
+      <Styled.TabsWrapper>
+         <Styled.TabButton 
+             type="button"
+             active={sidebarContentPanel === PANELS.CHAT} 
+             onClick={(e) => {
+                 e.stopPropagation();
+                 e.preventDefault();
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN, value: true });
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL, value: PANELS.CHAT });
+                 contextDispatch({ type: ACTIONS.SET_ID_CHAT_OPEN, value: window.meetingClientSettings?.public?.chat?.public_group_id || 'public' });
+             }}>
+           <i className="tab-icon icon-ilmify-chat" aria-hidden="true" />
+           Chat
+         </Styled.TabButton>
+         <Styled.TabButton 
+             type="button"
+             active={sidebarContentPanel === PANELS.USERLIST} 
+             onClick={(e) => {
+                 e.stopPropagation();
+                 e.preventDefault();
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN, value: true });
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL, value: PANELS.USERLIST });
+             }}>
+           <i className="tab-icon icon-ilmify-user" aria-hidden="true" />
+           Users
+           {userCount > 0 && <Styled.UserCountBadge>{userCount}</Styled.UserCountBadge>}
+         </Styled.TabButton>
+         <Styled.TabButton 
+             type="button"
+             active={sidebarContentPanel === PANELS.SHARED_NOTES} 
+             onClick={(e) => {
+                 e.stopPropagation();
+                 e.preventDefault();
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN, value: true });
+                 contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL, value: PANELS.SHARED_NOTES });
+             }}>
+           <i className="tab-icon icon-ilmify-file" aria-hidden="true" />
+           Notes
+         </Styled.TabButton>
+         {amIModerator && (
+           <Styled.TabButton 
+               type="button"
+               active={sidebarContentPanel === PANELS.POLL} 
+               onClick={(e) => {
+                   e.stopPropagation();
+                   e.preventDefault();
+                   contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN, value: true });
+                   contextDispatch({ type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL, value: PANELS.POLL });
+               }}>
+             <i className="tab-icon icon-ilmify-polling" aria-hidden="true" />
+             Poll
+           </Styled.TabButton>
+         )}
+      </Styled.TabsWrapper>
+      <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       {sidebarContentPanel === PANELS.CHAT
         && (
           <ErrorBoundary
             Fallback={FallbackView}
           >
-            <ChatContainer width={width} />
+            <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+              <ChatContainer width={width} />
+            </div>
           </ErrorBoundary>
         )}
+      {sidebarContentPanel === PANELS.USERLIST && (
+        <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <UserListContainer />
+        </div>
+      )}
       {!isSharedNotesPinned && (
         <NotesContainer
           isToSharedNotesBeShow={sidebarContentPanel === PANELS.SHARED_NOTES}
@@ -168,6 +238,7 @@ const SidebarContent = (props) => {
           genericSidekickContentId={sidebarContentPanel}
         />
       )}
+      </div>
     </Resizable>
   );
 };

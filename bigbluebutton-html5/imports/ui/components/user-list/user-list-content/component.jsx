@@ -2,11 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Styled from './styles';
 import UserListParticipants from './user-participants/user-list-participants/component';
-import ChatList from './user-messages/chat-list/component';
-import UserNotesContainer from '../user-list-graphql/user-shared-notes/component';
 import TimerContainer from './timer/container';
 import GuestPanelOpenerContainer from '../user-list-graphql/user-participants-title/guest-panel-opener/component';
-import UserPollsContainer from './user-polls/container';
 import BreakoutRoomContainer from './breakout-room/container';
 import UserTitleContainer from '../user-list-graphql/user-participants-title/component';
 import RaisedHandsContainer from './raised-hands/component';
@@ -49,12 +46,9 @@ class UserContent extends PureComponent {
         {isMobile || (isMobile && isPortrait) ? (
           <Styled.ScrollableList role="tabpanel" tabIndex={0}>
             <Styled.List>
-              <ChatList />
-              <UserNotesContainer />
               {isTimerActive
               && <TimerContainer isModerator={currentUser?.role === ROLE_MODERATOR} />}
               {currentUser?.role === ROLE_MODERATOR ? <GuestPanelOpenerContainer /> : null}
-              <UserPollsContainer isPresenter={currentUser?.presenter} />
               <BreakoutRoomContainer />
               <GenericSidekickContentNavButtonContainer />
               <RaisedHandsContainer />
@@ -64,11 +58,8 @@ class UserContent extends PureComponent {
           </Styled.ScrollableList>
         ) : (
           <>
-            <ChatList />
-            <UserNotesContainer />
             {isTimerActive && <TimerContainer isModerator={currentUser?.role === ROLE_MODERATOR} />}
             {currentUser?.role === ROLE_MODERATOR ? <GuestPanelOpenerContainer /> : null}
-            <UserPollsContainer isPresenter={currentUser?.presenter} />
             <BreakoutRoomContainer />
             <GenericSidekickContentNavButtonContainer />
             <RaisedHandsContainer />

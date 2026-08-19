@@ -69,7 +69,14 @@ class ModalSimple extends Component {
   componentDidUpdate(prevProps) {
     const { modalIsOpen } = this.props;
     if (!prevProps.modalIsOpen && modalIsOpen) {
-      this.previousFocus = document.activeElement;
+      // Blur the currently focused element BEFORE the modal marks the background
+      // as aria-hidden. Without this, browsers block the aria-hidden attribute
+      // on #app when a child (e.g. the chat textarea) is still focused, logging
+      // an accessibility error. Blurring first moves focus out of the hidden tree.
+      if (document.activeElement && document.activeElement !== document.body) {
+        this.previousFocus = document.activeElement;
+        document.activeElement.blur();
+      }
     }
     this.updateDocumentTitleView();
   }

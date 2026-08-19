@@ -13,15 +13,15 @@ interface UnreadButtonProps {
 }
 
 export const MessageList = styled(ScrollboxVertical)<MessageListProps>`
+  flex: 1;
+  min-height: 0;
+  display: flex;
   flex-flow: column;
   outline-style: none;
   overflow-x: hidden;
-  height: 100%;
+  overflow-y: auto;
   width: 100%;
   z-index: 2;
-  overflow-y: auto;
-  position: absolute;
-  display: flex;
   padding-bottom: ${smPaddingX};
 
   ${({ isRTL }) => isRTL && `
@@ -36,28 +36,18 @@ export const MessageList = styled(ScrollboxVertical)<MessageListProps>`
 export const UnreadButton = styled(ButtonElipsis)<UnreadButtonProps>`
   flex-shrink: 0;
   text-transform: uppercase;
-  margin-bottom: .25rem;
+  margin-top: .25rem;
   z-index: 3;
-  position: absolute;
-  bottom: 0;
-
-  ${({ isRTL }) => isRTL && `
-    left: ${smPaddingX};
-    right: 0;
-  `}
-
-  ${({ isRTL }) => !isRTL && `
-    left: 0;
-    right: ${smPaddingX};
-  `}
+  align-self: center;
 `;
 
 export const PageWrapper = styled.div``;
 
 export const Content = styled.div`
-  height: 100%;
-  position: relative;
-  flex-shrink: 1;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 `;
 

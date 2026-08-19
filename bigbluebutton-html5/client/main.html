@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <!--
-BigBlueButton open source conferencing system - http://www.bigbluebutton.org/
+ilmify open source conferencing system - https://ilmify.app/
 
-Copyright (c) 2019 BigBlueButton Inc. and by respective authors (see below).
+Copyright (c) 2019 ilmify and by respective authors (see below).
 
 This program is free software; you can redistribute it and/or modify it under the
 terms of the GNU Lesser General Public License as published by the Free Software
 Foundation; either version 3.0 of the License, or (at your option) any later
 version.
 
-BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+ilmify is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License along
-with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+with ilmify; if not, see <http://www.gnu.org/licenses/>.
 -->
 
 <head>
@@ -25,7 +25,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
        client (insertBefore NotFoundError) on the next render. Use in-app i18n. -->
   <meta name="google" content="notranslate">
   <script>document.documentElement.setAttribute('translate', 'no');</script>
-  <title>BigBlueButton</title>
+  <title>ilmify</title>
   <link rel="stylesheet" href="stylesheets/normalize.css" crossorigin="anonymous"/>
   <style>
     html {
@@ -39,9 +39,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     body {
       position: fixed;
       height: 100%;
-      font-family: 'Source Sans Pro', Arial, sans-serif;
+      font-family: 'DM Sans', 'Noto Sans', 'Noto Sans Tamil', 'Noto Sans Malayalam', 'Noto Color Emoji', 'Noto Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
       font-size: 1rem; /* 16px */
-      background-color: #06172A;
+      background-color: #000000;
     }
 
     /* language-specific font */
@@ -137,8 +137,10 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/tflite-simd.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/tflite.js?v=VERSION" language="javascript"></script>
-  <!-- fonts -->
-  <link rel="preload" href="fonts/BbbIcons/bbb-icons.woff2?v=VERSION" as="font" type="font/woff2" crossorigin="anonymous"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&family=Amiri+Quran&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Tamil&family=Noto+Nastaliq+Urdu&family=Noto+Sans+Arabic&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/IlmifyIcons/ilmify-icons.woff2?v=VERSION" as="font" type="font/woff2" crossorigin="anonymous"/>
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Light.woff?v=VERSION" as="font" crossorigin="anonymous"/>
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Regular.woff?v=VERSION" as="font" crossorigin="anonymous"/>
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Semibold.woff?v=VERSION" as="font" crossorigin="anonymous"/>
@@ -148,7 +150,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-SemiboldItalic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-BoldItalic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
   
-  <link rel="stylesheet" href="stylesheets/bbb-icons.css" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="stylesheets/ilmify-icons.css" crossorigin="anonymous"/>
   <link rel="stylesheet" href="stylesheets/fonts.css" crossorigin="anonymous"/>
   <link rel="stylesheet" href="stylesheets/fontSizing.css" crossorigin="anonymous"/>
   <link rel="stylesheet" href="stylesheets/modals.css" crossorigin="anonymous"/>
@@ -157,16 +159,16 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   
   <style>
     @font-face {
-      font-family: 'bbb-icons';
-      src: url('fonts/BbbIcons/bbb-icons.woff2?v=VERSION') format('woff2'),
-      url('fonts/BbbIcons/bbb-icons.woff?v=VERSION') format('woff');
+      font-family: 'ilmify-icons';
+      src: url('fonts/IlmifyIcons/ilmify-icons.woff2?v=VERSION') format('woff2'),
+      url('fonts/IlmifyIcons/ilmify-icons.woff?v=VERSION') format('woff');
       font-weight: normal;
       font-style: normal;
     }
     </style>
   <!-- fonts -->
 </head>
-<body style="background-color: #06172A">
+<body style="background-color: #000000">
   <div id="aria-polite-alert" aria-live="polite" aria-atomic="false" class="sr-only"></div>
   <svg style="display: none; width: 1px; height: 1px;">
     <defs>

@@ -50,6 +50,9 @@ const ChatMessageHeader: React.FC<ChatMessageHeaderProps> = ({
             </Styled.ChatUserOffline>
           )
         }
+        <Styled.ChatTime>
+          <FormattedTime value={dateTime} />
+        </Styled.ChatTime>
         <Styled.Center />
         {!deleteTime && editTime && (
           <Tooltip title={intl.formatTime(editTime)}>
@@ -64,9 +67,6 @@ const ChatMessageHeader: React.FC<ChatMessageHeaderProps> = ({
             <Icon iconName="delete" />
           </Styled.EditLabel>
         )}
-        <Styled.ChatTime>
-          <FormattedTime value={dateTime} />
-        </Styled.ChatTime>
       </Styled.ChatHeaderText>
     </Styled.HeaderContent>
   );

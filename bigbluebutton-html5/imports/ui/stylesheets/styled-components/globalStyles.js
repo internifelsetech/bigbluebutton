@@ -15,6 +15,9 @@ import {
 } from '/imports/ui/stylesheets/styled-components/palette';
 
 const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: #0d0e12;
+  }
   // BBBMenu
   @media ${smallOnly} {
     .MuiPopover-root {
@@ -36,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .MuiPaper-root {
     background-color: ${dropdownBg};
-    border-radius: ${borderRadius};
+    border-radius: .75rem !important;
     border: 0;
     z-index: 999;
     max-width: 22rem;
@@ -159,6 +162,13 @@ const GlobalStyle = createGlobalStyle`
     i.close {
       left: none !important;
     }
+    .hneVSI {
+    color: red;
+    display: flex;
+    background: red;
+    flex-direction: row;
+    padding: calc(2px + 0.5rem) 1.25rem;
+}
   }
 `;
 

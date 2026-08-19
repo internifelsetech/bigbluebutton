@@ -12,6 +12,7 @@ import { uniqueId } from '/imports/utils/string-utils';
 import VideoPreviewContainer from '/imports/ui/components/video-preview/container';
 import { screenshareHasEnded } from '/imports/ui/components/screenshare/service';
 import Session from '/imports/ui/services/storage/in-memory';
+import { Plus } from 'lucide-react';
 import { ModalRegistration } from '/imports/ui/core/singletons/modalController';
 
 const propTypes = {
@@ -339,7 +340,6 @@ class ActionsDropdown extends PureComponent {
     return presentationItemElements;
   }
 
-
   render() {
     const {
       intl,
@@ -375,7 +375,7 @@ class ActionsDropdown extends PureComponent {
               aria-label={intl.formatMessage(intlMessages.actionsLabel)}
               data-test="actionsButton"
               label={intl.formatMessage(intlMessages.actionsLabel)}
-              icon="plus"
+              customIcon={<Plus size={16} />}
               color="primary"
               size="lg"
               circle
@@ -394,7 +394,7 @@ class ActionsDropdown extends PureComponent {
             transformOrigin: { vertical: 'bottom', horizontal: isRTL ? 'right' : 'left' },
           }}
         />
-            {/* External Video Modal */}
+        {/* External Video Modal */}
         <ModalRegistration id="externalVideoModal" priority="low">
           {({
             isOpen,

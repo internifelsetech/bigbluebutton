@@ -7,6 +7,7 @@ import logger from '/imports/startup/client/logger';
 import { notify } from '/imports/ui/services/notification';
 import { useMutation } from '@apollo/client';
 import Styled from './styles';
+import { Monitor } from 'lucide-react';
 import ScreenshareBridgeService from '/imports/api/screenshare/client/bridge/service';
 import {
   shareScreen,
@@ -95,7 +96,7 @@ const intlMessages = defineMessages({
   toastHelpLabel: {
     id: 'app.screenshare.screenshareToastHelpLabel',
     description: 'Label of the help button in toast notifications that opens external link',
-  }
+  },
 });
 
 const getErrorLocale = (errorCode) => {
@@ -181,7 +182,7 @@ const ScreenshareButton = ({
     } = error;
 
     const localizedError = getErrorLocale(errorCode);
-    const helpInfo =  getHelpInfoForError(errorCode);
+    const helpInfo = getHelpInfoForError(errorCode);
     const toastType = getToastType(errorCode);
 
     if (localizedError) {
@@ -237,7 +238,7 @@ const ScreenshareButton = ({
             <Styled.Container>
               <Button
                 disabled={(!isConnected && !isScreenBroadcasting) || !screenshareDataSavingSetting || !amIPresenter}
-                icon={amIBroadcasting ? 'desktop' : 'desktop_off'}
+                customIcon={<Monitor size={16} />}
                 data-test={dataTest}
                 label={intl.formatMessage(intlMessages[`${info}Label`])}
                 description={intl.formatMessage(intlMessages[`${info}Desc`])}

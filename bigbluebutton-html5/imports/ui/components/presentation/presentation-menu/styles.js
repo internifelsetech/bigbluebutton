@@ -41,6 +41,11 @@ const Right = styled.div`
   top: 2px;
   z-index: 999;
 
+  @media screen and (orientation: portrait) {
+    right: 10px;
+    top: 2px;
+  }
+
   > div {
     width: 35px;
     height: 35px;

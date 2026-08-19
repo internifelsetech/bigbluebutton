@@ -18,21 +18,27 @@ const Navbar = styled.header`
   flex-direction: column;
   text-align: center;
   font-size: 1.5rem;
-  background-color: ${colorBackground};
-  padding: ${barsPadding} ${barsPadding} 0 ${barsPadding};
+  background-color: #0d0e12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 1rem;
+  justify-content: center;
 `;
 
 const Top = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  flex: 1;
+  width: 100%;
 `;
 
 const Left = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
+  flex: 1;
 `;
 
 const ArrowLeft = styled(Icon)`
@@ -60,8 +66,7 @@ const Center = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  flex: 1;
+  flex: 0 1 auto;
 `;
 
 const PresentationTitle = styled.h1`
@@ -81,13 +86,25 @@ const TitleButton = styled.button`
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2e8f0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 
   &:focus-visible {
     outline: 2px solid ${colorWhite};
-    border-radius: 2px;
+    border-radius: 9999px;
   }
 
-  > [class^="icon-bbb-"] {
+  > [class^="icon-ilmify-"] {
     font-size: 75%;
   }
 
@@ -123,9 +140,10 @@ const PluginSeparatorWrapper = styled.div`
 const Right = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  flex: 0;
+  flex: 1;
+  gap: 8px;
 `;
 
 const Bottom = styled.div`

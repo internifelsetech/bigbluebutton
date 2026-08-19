@@ -23,6 +23,7 @@ import { VIDEO_TYPES } from '/imports/ui/components/video-provider/enums';
 import PluginButtonContainer from '../../../plugins/plugin-button/container';
 import { UserCameraHelperAreas } from '../../../plugins-engine/extensible-areas/components/user-camera-helper/types';
 import PluginMenuActions from './plugin-menu-actions/component';
+import { stringToColor } from '/imports/utils/string-utils';
 
 const intlMessages = defineMessages({
   disableDesc: {
@@ -293,6 +294,7 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
   const renderSqueezedButton = () => (
     <UserActions
       name={name}
+      color={stringToColor(user?.userId || user?.name || name)}
       stream={stream}
       videoContainer={videoContainer}
       isVideoSqueezed={isVideoSqueezed}
@@ -314,7 +316,7 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
 
   const renderSqueezedName = () => (
     <Styled.BottomBar>
-      <Styled.SqueezedName>{name}</Styled.SqueezedName>
+      <Styled.SqueezedName $avatarColor={stringToColor(user?.userId || user?.name || name)}>{name}</Styled.SqueezedName>
     </Styled.BottomBar>
   );
 
@@ -374,6 +376,7 @@ const VideoListItem: React.FC<VideoListItemProps> = (props) => {
       <Styled.BottomBar>
         <UserActions
           name={name}
+          color={stringToColor(user?.userId || user?.name || name)}
           stream={stream}
           cameraId={cameraId}
           numOfStreams={numOfStreams}

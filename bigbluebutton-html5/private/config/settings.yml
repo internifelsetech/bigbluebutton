@@ -26,12 +26,12 @@ public:
     enableDynamicAudioDeviceSelection: true
     #
     skipEchoTestIfPreviousDevice: false
-    clientTitle: BigBlueButton
+    clientTitle: ilmify
     bbbServerVersion: HTML5_FULL_BBB_VERSION
     displayBbbServerVersion: true
-    copyright: '©2026 BigBlueButton Inc.'
+    copyright: '©2026 ilmify'
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://ilmify.app/
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true

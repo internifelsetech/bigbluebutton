@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useMutation } from '@apollo/client';
+import { Mic, MicOff } from 'lucide-react';
 import Styled from '../styles';
 import { useShortcut } from '/imports/ui/core/hooks/useShortcut';
 import useMuteSoundAlert from '/imports/ui/core/hooks/useMuteSoundAlert';
@@ -158,7 +159,7 @@ export const MuteToggle: React.FC<MuteToggleProps> = ({
       label={label}
       aria-label={label}
       color={!muted ? 'primary' : 'default'}
-      icon={muted ? 'mute' : 'unmute'}
+      customIcon={muted ? <MicOff size={16} /> : <Mic size={16} />}
       size="lg"
       circle
       accessKey={toggleMuteShourtcut}

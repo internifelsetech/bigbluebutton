@@ -84,7 +84,7 @@ const UserAvatar = styled.div<UserAvatarProps>`
     background-color: ${colorSuccess};
     color: ${colorWhite};
     opacity: 0;
-    font-family: 'bbb-icons';
+    font-family: 'ilmify-icons';
     font-size: .65rem;
     line-height: 0;
     text-align: center;
