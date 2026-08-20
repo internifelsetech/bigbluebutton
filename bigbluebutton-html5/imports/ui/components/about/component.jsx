@@ -45,17 +45,9 @@ const AboutComponent = (props) => {
   const intl = useIntl();
   const {
     html5ClientBuild,
-    copyright,
     bbbServerVersion,
     displayBbbServerVersion,
   } = settings;
-
-  const showLabelVersion = () => (
-    <>
-      <br />
-      {`${intl.formatMessage(intlMessages.version_label)} ${bbbServerVersion}`}
-    </>
-  );
 
   return (
     <ModalSimple
@@ -71,11 +63,25 @@ const AboutComponent = (props) => {
         priority,
       }}
     >
-      {`${intl.formatMessage(intlMessages.copyright)} ${copyright}`}
-      <br />
-      {`${intl.formatMessage(intlMessages.version)} ${html5ClientBuild}`}
-      {displayBbbServerVersion ? showLabelVersion() : null}
-
+      <div style={{ padding: '10px 0', lineHeight: '1.5' }}>
+        <strong>
+          Ilmify
+        </strong>
+        <br />
+        Smart Islamic Learning
+        <br />
+        <br />
+        Client build:
+        {' '}
+        {html5ClientBuild}
+        <br />
+        {displayBbbServerVersion ? `ilmify version: ${bbbServerVersion}` : null}
+        <br />
+        <br />
+        <a href="https://ilmify.app" target="_blank" rel="noreferrer">
+          Visit Ilmify Website
+        </a>
+      </div>
     </ModalSimple>
   );
 };

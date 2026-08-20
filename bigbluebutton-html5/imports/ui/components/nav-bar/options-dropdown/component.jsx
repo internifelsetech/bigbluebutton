@@ -249,7 +249,6 @@ class OptionsDropdown extends PureComponent {
 
     const {
       showHelpButton: helpButton,
-      helpLink,
       allowLogout: allowLogoutSetting,
     } = window.meetingClientSettings.public.app;
 
@@ -332,7 +331,7 @@ class OptionsDropdown extends PureComponent {
         label: intl.formatMessage(intlMessages.helpLabel),
         dataTest: 'helpButton',
         description: intl.formatMessage(intlMessages.helpDesc),
-        onClick: () => window.open(`${helpLink}`),
+        onClick: () => window.open('https://ilmify.app'),
       });
     }
 
@@ -366,7 +365,8 @@ class OptionsDropdown extends PureComponent {
 
     const Settings = getSettingsSingletonInstance();
     const { selectedLayout } = Settings.application;
-    const showLayoutButton = window.meetingClientSettings.public.layout.enableDeprecatedLayoutSelection;
+    const showLayoutButton = window.meetingClientSettings.public.layout
+      .enableDeprecatedLayoutSelection;
     const shouldShowManageLayoutButton = selectedLayout !== LAYOUT_TYPE.CAMERAS_ONLY
       && selectedLayout !== LAYOUT_TYPE.PRESENTATION_ONLY
       && selectedLayout !== LAYOUT_TYPE.PARTICIPANTS_AND_CHAT_ONLY
