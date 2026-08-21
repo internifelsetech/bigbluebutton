@@ -6,13 +6,11 @@ const LeaveMeetingWrapper = styled.div`
   display: inline-block;
   
   ${({ $isMobile }) => !$isMobile && `
-    margin-left: 1.0rem;
-    margin-right: 0.5rem;
+    margin: 0 0.125rem;
   `}
 `;
 
 const LeaveButton = styled(Button)`
-  border-radius: 1.1rem;
   font-size: 1rem;
   line-height: 1.1rem;
   font-weight: 400;

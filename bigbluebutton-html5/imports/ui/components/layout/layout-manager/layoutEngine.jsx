@@ -313,7 +313,7 @@ const LayoutEngine = () => {
     }
 
     return {
-      width: isMobile ? width - (2 * margin) : width - (3 * margin),
+      width: isMobile ? width - (2 * margin) : width - (4 * margin),
       height: windowHeight() - (navBarHeight + actionBarHeight + bannerAreaHeight() + (2 * margin)),
       top: navBarHeight + bannerAreaHeight() + margin,
       left: isMobile ? left + margin : (!isRTL ? left + (2 * margin) : left + margin),

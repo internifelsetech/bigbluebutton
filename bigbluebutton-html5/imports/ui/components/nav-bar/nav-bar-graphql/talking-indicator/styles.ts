@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import {
   borderSize,
   borderRadius,
@@ -27,6 +27,12 @@ import { phoneLandscape } from '/imports/ui/stylesheets/styled-components/breakp
 import Button from '/imports/ui/components/common/button/component';
 import Icon from '/imports/ui/components/common/icon/component';
 
+const pulseRing = keyframes`
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+`;
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - as button comes from JS, we can't provide its props
 const TalkingIndicatorButton = styled(Button)`
@@ -48,6 +54,8 @@ const TalkingIndicatorButton = styled(Button)`
   @media ${phoneLandscape} {
     height: 1rem;
   }
+  
+  animation: ${pulseRing} 2s infinite ease-in-out;
 
   i,
   span {
@@ -133,7 +141,7 @@ const TalkingIndicatorWrapper = styled.div<{ muted?: boolean; talking?: boolean;
   display: flex;
   margin: 0 ${borderRadius};
   opacity: ${({ muted, talking }) => ((muted || !talking) && `${spokeOpacity};`) || '1;'};
-  background: ${({ talking }) => (talking ? `${colorSuccess}` : `${colorBackground};`)};
+  background: transparent;
 `;
 
 const Hidden = styled.div`

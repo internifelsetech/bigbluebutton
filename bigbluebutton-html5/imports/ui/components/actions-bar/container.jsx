@@ -95,6 +95,12 @@ const ActionsBarContainer = (props) => {
   const isRaiseHandEnabled = useIsRaiseHandEnabled();
   const isReactionsButtonEnabled = useIsUserReactionsEnabled();
   const applicationSettings = useSettings(SETTINGS.APPLICATION);
+  const PUBLIC_CONFIG = window.meetingClientSettings.public;
+  const IS_DIRECT_LEAVE_BUTTON_ENABLED = getFromUserSettings(
+    'bbb_direct_leave_button',
+    PUBLIC_CONFIG.app.defaultSettings.application.directLeaveButton,
+  );
+  
   const { pushLayout } = applicationSettings;
   const setPushLayout = usePushLayoutUpdater(pushLayout);
   const setMeetingLayout = useMeetingLayoutUpdater(
@@ -149,6 +155,7 @@ const ActionsBarContainer = (props) => {
         setMeetingLayout,
         showPushLayout: showPushLayoutButton && applicationSettings.selectedLayout === 'custom',
         ariaHidden,
+        isDirectLeaveButtonEnabled: IS_DIRECT_LEAVE_BUTTON_ENABLED,
       }
     }
     />

@@ -178,10 +178,7 @@ const InputWrapper = styled.div`
     border-radius: 0 0.75rem 0.75rem 0;
   }
 
-  &:focus-within {
-    border-color: ${colorPrimary};
-    box-shadow: 0 0 0 ${borderSize} ${colorPrimary};
-  }
+
 `;
 
 export default {

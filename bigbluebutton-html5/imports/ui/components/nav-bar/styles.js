@@ -149,6 +149,10 @@ const Right = styled.div`
 const Bottom = styled.div`
   display: flex;
   flex-direction: row;
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  z-index: 100;
 
   @media ${phoneLandscape} {
     margin-top: .25rem;

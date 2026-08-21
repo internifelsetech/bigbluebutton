@@ -7,7 +7,7 @@ import { colorWhite } from '/imports/ui/stylesheets/styled-components/palette';
 const BaseModal = styled(ModalScrollboxVertical)`
   max-width: 60vw;
   max-height: 100%;
-  border-radius: ${borderRadius};
+  border-radius: 1.2rem;
   background: ${colorWhite};
   overflow: auto;
 

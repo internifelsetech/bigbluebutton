@@ -162,7 +162,7 @@ class LeaveMeetingButton extends PureComponent {
 
     const { isEndMeetingConfirmationModalOpen } = this.state;
 
-    const customStyles = { top: '1rem' };
+    const customStyles = { top: '-1rem' };
 
     const actions = this.renderMenuItems();
 
@@ -190,6 +190,7 @@ class LeaveMeetingButton extends PureComponent {
               icon="logout"
               color="danger"
               size="lg"
+              circle
               hideLabel
               disabled={isDisabled}
               // FIXME: Without onClick react proptypes keep warning
@@ -206,8 +207,8 @@ class LeaveMeetingButton extends PureComponent {
             elevation: 3,
             getcontentanchorel: null,
             fullwidth: 'true',
-            anchorOrigin: { vertical: 'bottom', horizontal: isRTL ? 'left' : 'right' },
-            transformorigin: { vertical: 'top', horizontal: isRTL ? 'left' : 'right' },
+            anchorOrigin: { vertical: 'top', horizontal: isRTL ? 'left' : 'right' },
+            transformOrigin: { vertical: 'bottom', horizontal: isRTL ? 'left' : 'right' },
           }}
         />
         </Styled.LeaveMeetingWrapper>

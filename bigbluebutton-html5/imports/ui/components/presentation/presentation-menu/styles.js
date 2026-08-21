@@ -37,13 +37,13 @@ const DropdownButton = styled.button`
 const Right = styled.div`
   cursor: pointer;
   position: absolute;
-  right: 3px;
-  top: 2px;
+  right: 17px;
+  top: 14px;
   z-index: 999;
 
   @media screen and (orientation: portrait) {
     right: 10px;
-    top: 2px;
+    top: 14px;
   }
 
   > div {

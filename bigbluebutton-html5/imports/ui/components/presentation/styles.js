@@ -205,8 +205,8 @@ const Button = styled.button`
 
 const ExtraTools = styled.div`
   position: absolute;
-  top: 2px;
-  right: 43px;
+  top: 14px;
+  right: 57px;
   z-index: 399;
   display: flex;
   gap: 5px;
@@ -214,7 +214,7 @@ const ExtraTools = styled.div`
 
   [dir="rtl"] & {
     right: auto;
-    left: 43px;
+    left: 57px;
   }
 
   @media screen and (orientation: portrait) {

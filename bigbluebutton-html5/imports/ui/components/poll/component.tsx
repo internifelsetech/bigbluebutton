@@ -766,21 +766,8 @@ const PollCreationPanel: React.FC<PollCreationPanelProps> = ({
       <Header
         data-test="pollPaneTitle"
         bottomless
-        leftButtonProps={{
-          'aria-label': intl.formatMessage(intlMessages.hidePollDesc),
-          'data-test': 'hidePollDesc',
-          label: intl.formatMessage(intlMessages.pollPaneTitle),
-          onClick: () => {
-            layoutContextDispatch({
-              type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
-              value: false,
-            });
-            layoutContextDispatch({
-              type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL,
-              value: PANELS.NONE,
-            });
-          },
-        }}
+        title={intl.formatMessage(intlMessages.pollPaneTitle)}
+        leftButtonProps={null}
         rightButtonProps={{
           'aria-label': `${intl.formatMessage(intlMessages.closeLabel)} ${intl.formatMessage(intlMessages.pollPaneTitle)}`,
           'data-test': 'closePolling',

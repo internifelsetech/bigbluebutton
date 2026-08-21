@@ -4,6 +4,7 @@ import { ActionsBarItemType, ActionsBarPosition } from 'bigbluebutton-html-plugi
 import Styled from './styles';
 import { PluginButtonIcon } from '/imports/ui/components/plugins/plugin-icon/styles';
 import ActionsDropdown from './actions-dropdown/container';
+import LeaveMeetingButtonContainer from '/imports/ui/components/nav-bar/leave-meeting-button/container';
 import AudioCaptionsButtonContainer from '/imports/ui/components/audio/audio-graphql/audio-captions/button/component';
 import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/screenshare/container';
 import AudioControlsContainer from '../audio/audio-graphql/audio-controls/component';
@@ -159,6 +160,7 @@ class ActionsBar extends PureComponent {
       showScreenshareQuickSwapButton,
       isReactionsButtonEnabled,
       isRaiseHandEnabled,
+      isDirectLeaveButtonEnabled,
     } = this.props;
 
     const Settings = getSettingsSingletonInstance();
@@ -237,6 +239,7 @@ class ActionsBar extends PureComponent {
             )}
             {isReactionsButtonEnabled && this.renderReactionsButton()}
             {this.renderPluginsActionBarItems(ActionsBarPosition.RIGHT)}
+
           </Styled.Center>
           <Styled.Right>
             <Styled.Gap>
@@ -259,6 +262,8 @@ class ActionsBar extends PureComponent {
                   />
                 )
                 : null}
+              {isDirectLeaveButtonEnabled && isConnected
+                  ? <LeaveMeetingButtonContainer amIModerator={amIModerator} /> : null}
             </Styled.Gap>
           </Styled.Right>
         </Styled.ActionsBar>

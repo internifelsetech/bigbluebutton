@@ -139,7 +139,7 @@ const TalkingIndicator: React.FC<TalkingIndicatorProps> = ({
           icon={icon}
           size="lg"
           style={
-            (isMuteActionAvailable && color)
+            color
               ? {
                 backgroundColor: color,
                 border: `solid 2px ${color}`,
