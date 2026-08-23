@@ -74,8 +74,7 @@ const intlMessages = defineMessages({
 });
 
 const getClientTitle = () => {
-  const publicConfig = window.meetingClientSettings?.public;
-  return publicConfig?.app?.clientTitle || 'Ilmify';
+  return 'Ilmify';
 };
 
 const getChatTitle = (

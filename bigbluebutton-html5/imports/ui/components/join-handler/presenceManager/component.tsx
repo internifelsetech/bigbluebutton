@@ -81,8 +81,7 @@ const PresenceManager: React.FC<PresenceManagerProps> = ({
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
   const loadingContextInfo = useContext(LoadingContext);
   const [isGuestAllowed, setIsGuestAllowed] = useState(guestStatus === GUEST_STATUSES.ALLOW);
-  const PUBLIC_CONFIG = window.meetingClientSettings.public;
-  const CLIENT_TITLE = PUBLIC_CONFIG.app.clientTitle || 'Ilmify';
+  const CLIENT_TITLE = 'Ilmify';
 
   useEffect(() => {
     const allowed = guestStatus === GUEST_STATUSES.ALLOW;
