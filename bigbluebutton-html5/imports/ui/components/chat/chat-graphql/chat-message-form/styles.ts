@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {
   colorText,
   colorBorder,
-  colorPrimary,
   colorDanger,
   colorGrayDark,
 } from '/imports/ui/stylesheets/styled-components/palette';

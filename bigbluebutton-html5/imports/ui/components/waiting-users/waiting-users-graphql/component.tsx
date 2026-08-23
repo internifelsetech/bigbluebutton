@@ -324,6 +324,7 @@ const GuestUsersManagementPanel: React.FC<GuestUsersManagementPanelProps> = ({
   return (
     <Styled.Panel data-test="note" isChrome={isChrome}>
       <Header
+        title={intl.formatMessage(intlMessages.title)}
         leftButtonProps={{
           onClick: () => closePanel(),
           label: intl.formatMessage(intlMessages.title),

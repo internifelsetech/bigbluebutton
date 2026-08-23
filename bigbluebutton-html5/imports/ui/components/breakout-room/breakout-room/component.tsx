@@ -172,6 +172,7 @@ const BreakoutRoom: React.FC<BreakoutRoomProps> = ({
       }}
     >
       <Header
+        title={intl.formatMessage(intlMessages.breakoutTitle)}
         leftButtonProps={{
           'aria-label': intl.formatMessage(intlMessages.breakoutAriaTitle),
           label: intl.formatMessage(intlMessages.breakoutTitle),

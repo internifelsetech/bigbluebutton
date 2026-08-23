@@ -7,7 +7,7 @@ import browserInfo from '/imports/utils/browserInfo';
 import Header from '/imports/ui/components/common/control-header/component';
 import NotesDropdown from './notes-dropdown/component';
 import {
-  PANELS, ACTIONS,
+  ACTIONS,
 } from '/imports/ui/components/layout/enums';
 import { layoutSelectInput, layoutDispatch, layoutSelectOutput } from '/imports/ui/components/layout/context';
 import useCurrentUser from '/imports/ui/core/hooks/useCurrentUser';
@@ -50,8 +50,7 @@ interface NotesGraphqlProps extends NotesContainerGraphqlProps {
   hasPermission: boolean;
   sharedNotesEditor: string;
   padId: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  layoutContextDispatch: (action: any) => void;
+
   isResizing: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sidebarContent: any;
@@ -72,7 +71,7 @@ const NotesGraphql: React.FC<NotesGraphqlProps> = (props) => {
     sharedNotesEditor,
     padId,
     isRTL,
-    layoutContextDispatch,
+
     isResizing,
     area,
     sidebarContent,
@@ -253,7 +252,6 @@ const NotesContainerGraphql: React.FC<NotesContainerGraphqlProps> = (props) => {
       sharedNotesEditor={sharedNotesEditor}
       area={area}
       hasPermission={hasPermission}
-      layoutContextDispatch={layoutContextDispatch}
       isResizing={isResizing}
       sidebarContent={sidebarContent}
       sharedNotesOutput={sharedNotesOutput}

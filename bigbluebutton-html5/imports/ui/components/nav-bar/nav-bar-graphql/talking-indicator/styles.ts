@@ -14,7 +14,6 @@ import {
   colorWhite,
   colorSuccess,
   colorDanger,
-  colorBackground,
 } from '/imports/ui/stylesheets/styled-components/palette';
 import {
   fontSizeBase,
