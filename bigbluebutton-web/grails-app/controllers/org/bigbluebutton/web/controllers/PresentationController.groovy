@@ -44,13 +44,13 @@ class PresentationController {
   DefaultMimeUtility grailsMimeUtility
 
   private static final Pattern SLIDE_URI_PATTERN = Pattern.compile(
-    '/bigbluebutton/presentation/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/(svg|thumbnail|textfiles|png)/(\\d+)'
+    '/(?:bigbluebutton|ilmify)/presentation/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/(svg|thumbnail|textfiles|png)/(\\d+)'
   )
   private static final Pattern DOWNLOAD_URI_PATTERN = Pattern.compile(
-    '/bigbluebutton/presentation/download/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)'
+    '/(?:bigbluebutton|ilmify)/presentation/download/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)'
   )
   private static final Pattern PDF_URI_PATTERN = Pattern.compile(
-    '/bigbluebutton/presentation/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/pdf/([A-Za-z0-9]+)/annotated_slides\\.pdf'
+    '/(?:bigbluebutton|ilmify)/presentation/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/([A-Za-z0-9\\-]+)/pdf/([A-Za-z0-9]+)/annotated_slides\\.pdf'
   )
 
   def index = {

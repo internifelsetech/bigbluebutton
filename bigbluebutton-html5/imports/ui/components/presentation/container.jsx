@@ -45,7 +45,7 @@ const PresentationContainer = (props) => {
   const { pres_page_curr: presentationPageArray } = (presentationPageData || {});
   const currentPresentationPage = presentationPageArray?.[0];
   const slideSvgUrl = currentPresentationPage?.svgUrl
-    ? Auth.authenticateURL(currentPresentationPage.svgUrl) : undefined;
+    ? Auth.authenticateURL(currentPresentationPage.svgUrl).replace('/bigbluebutton/presentation', '/ilmify/presentation') : undefined;
   const currentPageId = currentPresentationPage?.pageId;
 
   const currentPresentationId = currentPresentationPage?.presentationId;
@@ -200,7 +200,7 @@ const PresentationContainer = (props) => {
       && !presentation.fetchedSlide[currentSlide.num + PRELOAD_NEXT_SLIDE]
       && presentation.canFetch) {
       const nextSlidesSvgUrl = (currentPresentationPage.nextPagesSvg || [])
-        .map((url) => ({ svgUrl: Auth.authenticateURL(url) }));
+        .map((url) => ({ svgUrl: Auth.authenticateURL(url).replace('/bigbluebutton/presentation', '/ilmify/presentation') }));
       const slidesToFetch = nextSlidesSvgUrl;
 
       const promiseImageGet = slidesToFetch
@@ -269,7 +269,7 @@ const PresentationContainer = (props) => {
           slidePosition,
           hasWBAccess: currentUser?.whiteboardWriteAccess,
           downloadPresentationUri: currentPresentationPage?.downloadFileUri
-            ? Auth.authenticateURL(`${APP_CONFIG.bbbWebBase}/${currentPresentationPage.downloadFileUri}`)
+            ? Auth.authenticateURL(`${APP_CONFIG.bbbWebBase}/${currentPresentationPage.downloadFileUri}`).replace('/bigbluebutton/presentation', '/ilmify/presentation')
             : undefined,
           multiUser: (multiUserWhiteboardEnabled || multiUserData.active) && presentationIsOpen,
           presentationIsDownloadable: currentPresentationPage?.downloadable,

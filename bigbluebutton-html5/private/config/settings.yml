@@ -1061,7 +1061,7 @@ public:
     allowSnapshotOfCurrentSlide: true
     panZoomThrottle: 32
     restoreOnUpdate: true
-    uploadEndpoint: '/bigbluebutton/presentation/upload'
+    uploadEndpoint: '/ilmify/presentation/upload'
     fileUploadConstraintsHint: false
     # mirroredFromBBBCore are values controlled in bbb-web properties file. We include a copy here for notification purposes
     mirroredFromBBBCore:

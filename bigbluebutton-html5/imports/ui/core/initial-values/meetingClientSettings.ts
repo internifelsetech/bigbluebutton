@@ -721,7 +721,7 @@ export const meetingClientSettingsInitialValues: MeetingClientSettings = {
       allowSnapshotOfCurrentSlide: true,
       panZoomThrottle: 32,
       restoreOnUpdate: true,
-      uploadEndpoint: '/bigbluebutton/presentation/upload',
+      uploadEndpoint: '/ilmify/presentation/upload',
       fileUploadConstraintsHint: false,
       mirroredFromBBBCore: {
         uploadSizeMax: 30000000,

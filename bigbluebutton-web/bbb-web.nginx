@@ -1,4 +1,6 @@
 # Handle request to bbb-web running within a SpringBoot Tomcat embedded servlet container.  This is for BBB-API and Presentation.
+rewrite ^/ilmify/presentation/(.*)$ /bigbluebutton/presentation/$1 last;
+
 location /bigbluebutton {
 	proxy_http_version 1.1;
 	proxy_pass         http://127.0.0.1:8090;
@@ -64,7 +66,11 @@ location = /bigbluebutton/presentation/checkPresentation {
 	proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
 
 	proxy_set_header   X-Presentation-Token $prestoken;
-	proxy_set_header   X-Original-URI $request_uri;
+	set $auth_uri $request_uri;
+	if ($auth_uri ~ ^/ilmify/presentation/(.*)$) {
+		set $auth_uri /bigbluebutton/presentation/$1;
+	}
+	proxy_set_header   X-Original-URI $auth_uri;
 	proxy_set_header   Content-Length "";
 	proxy_set_header   X-Original-Content-Length $http_content_length;
 	proxy_set_header   X-Original-Method $request_method;
@@ -88,7 +94,11 @@ location = /bigbluebutton/presentation/checkAuthorization {
 	proxy_pass               http://127.0.0.1:8090;
 	proxy_pass_request_body  off;
 	proxy_set_header         Content-Length "";
-	proxy_set_header         X-Original-URI $request_uri;
+	set $auth_uri $request_uri;
+	if ($auth_uri ~ ^/ilmify/presentation/(.*)$) {
+		set $auth_uri /bigbluebutton/presentation/$1;
+	}
+	proxy_set_header         X-Original-URI $auth_uri;
 }
 
 location = /bigbluebutton/connection/checkAuthorization {

@@ -232,7 +232,8 @@ const WhiteboardContainer = (props) => {
 
   const publishCursorUpdate = useCallback((payload) => {
     const { whiteboardId, xPercent, yPercent } = payload;
-    if (!whiteboardId || xPercent == null || yPercent == null || !(hasWBAccess || isPresenter)) return;
+    if (!whiteboardId || xPercent == null || yPercent == null
+      || !(hasWBAccess || isPresenter)) return;
 
     presentationPublishCursor({
       variables: {
@@ -243,12 +244,10 @@ const WhiteboardContainer = (props) => {
     });
   }, [hasWBAccess, isPresenter]);
 
-  const throttledPublishCursorUpdate = useMemo(() => {
-    return throttle(
+  const throttledPublishCursorUpdate = useMemo(() => throttle(
     { interval: WHITEBOARD_CONFIG.cursorInterval },
     publishCursorUpdate,
-  );
-  }, [publishCursorUpdate]);
+  ), [publishCursorUpdate]);
 
   const isMultiUserActive = whiteboardWriters.filter((u) => !u.presenter)?.length > 0;
   const cursorArray = useMergedCursorData();
@@ -445,7 +444,7 @@ const WhiteboardContainer = (props) => {
       w: currentPresentationPage?.scaledWidth,
       h: currentPresentationPage?.scaledHeight,
       src: currentPresentationPage?.svgUrl
-        ? Auth.authenticateURL(currentPresentationPage.svgUrl) : undefined,
+        ? Auth.authenticateURL(currentPresentationPage.svgUrl).replace('/bigbluebutton/presentation', '/ilmify/presentation') : undefined,
       name: '',
       isAnimated: false,
       mimeType: null,
@@ -462,7 +461,9 @@ const WhiteboardContainer = (props) => {
   const sidebarNavigationWidth = layoutSelect(
     (i) => i?.output?.sidebarNavigation?.width,
   );
-  const { maxStickyNoteLength, maxNumberOfAnnotations, lockToolbarTools, pointerDiameter } = WHITEBOARD_CONFIG;
+  const {
+    maxStickyNoteLength, maxNumberOfAnnotations, lockToolbarTools, pointerDiameter,
+  } = WHITEBOARD_CONFIG;
   const fontFamily = WHITEBOARD_CONFIG.styles.text.family;
   const {
     colorStyle, dashStyle, fillStyle, fontStyle, sizeStyle,
