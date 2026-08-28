@@ -26,6 +26,8 @@ const config = {
       : 'bundle.[fullhash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
+    devtoolNamespace: 'app',
+    devtoolModuleFilenameTemplate: (info) => `app:///${info.resourcePath}`,
   },
   cache: {
     type: 'filesystem',
@@ -53,7 +55,7 @@ const config = {
     // (component.jsx) should start a tldraw rebuild.
     ignored: /node_modules|\.yalc/,
   },
-  devtool: 'source-map',
+  devtool: false,
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
