@@ -219,6 +219,7 @@ const PresentationContainer = (props) => {
   }
 
   const cameraDock = layoutSelectInput((i) => i.cameraDock);
+  const sidebarContent = layoutSelectInput((i) => i.sidebarContent);
   const presentation = layoutSelectOutput((i) => i.presentation);
   const fullscreen = layoutSelect((i) => i.fullscreen);
   const deviceType = layoutSelect((i) => i.deviceType);
@@ -292,6 +293,7 @@ const PresentationContainer = (props) => {
           annotationStreamData,
           initialPageAnnotations,
           refetchInitialPageAnnotations,
+          sidebarContent,
         }
       }
     />

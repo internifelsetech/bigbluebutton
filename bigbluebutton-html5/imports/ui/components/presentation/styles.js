@@ -238,6 +238,49 @@ const IconWithMask = styled.div.attrs({
   mask: url(${({ mask }) => mask})  center 100% / 100% no-repeat;
 `;
 
+const HamburgerButton = styled.button`
+  position: absolute;
+  top: 14px;
+  left: 35px;
+  z-index: 399;
+  width: 35px;
+  height: 35px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #2d2d2d;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:active {
+    background-color: #e4e4e4;
+  }
+
+  [dir="rtl"] & {
+    left: auto;
+    right: 35px;
+  }
+
+  @media screen and (orientation: portrait) {
+    top: 45px;
+    left: 8px;
+
+    [dir="rtl"] & {
+      left: auto;
+      right: 8px;
+    }
+  }
+`;
+
 export default {
   VisuallyHidden,
   PresentationSvg,
@@ -257,4 +300,5 @@ export default {
   Button,
   ExtraTools,
   IconWithMask,
+  HamburgerButton,
 };

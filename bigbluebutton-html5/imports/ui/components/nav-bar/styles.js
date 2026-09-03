@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import Icon from '/imports/ui/components/common/icon/component';
-import { barsPadding, borderSize } from '/imports/ui/stylesheets/styled-components/general';
+import { borderSize } from '/imports/ui/stylesheets/styled-components/general';
 import {
   colorWhite,
   colorDanger,
   colorGrayDark,
-  colorBackground,
   colorGray,
 } from '/imports/ui/stylesheets/styled-components/palette';
 import { fontSizeBase } from '/imports/ui/stylesheets/styled-components/typography';
@@ -180,6 +179,18 @@ const NavbarToggleButton = styled(Button)`
   `}
 `;
 
+const Logo = styled.img`
+  height: 28px;
+  margin-right: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+
+  @media ${smallOnly} {
+    height: 24px;
+    margin-right: 10px;
+  }
+`;
+
 export default {
   Navbar,
   Top,
@@ -195,4 +206,5 @@ export default {
   PluginInfoComponent,
   PluginComponentWrapper,
   PluginSeparatorWrapper,
+  Logo,
 };

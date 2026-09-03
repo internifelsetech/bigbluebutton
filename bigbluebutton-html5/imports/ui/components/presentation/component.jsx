@@ -11,7 +11,7 @@ import DownloadPresentationButton from './download-presentation-button/component
 import Styled from './styles';
 import FullscreenService from '/imports/ui/components/common/fullscreen-button/service';
 import PollingContainer from '/imports/ui/components/polling/container';
-import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
+import { ACTIONS, LAYOUT_TYPE, PANELS } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import { colorContentBackground } from '/imports/ui/stylesheets/styled-components/palette';
 import browserInfo from '/imports/utils/browserInfo';
@@ -58,9 +58,7 @@ const FULLSCREEN_CHANGE_EVENT = isSafari
   ? 'webkitfullscreenchange'
   : 'fullscreenchange';
 
-const getToolbarHeight = () => {
-  return 0; // Floating toolbar does not offset presentation height
-};
+const getToolbarHeight = () => 0; // Floating toolbar does not offset presentation height
 
 const IGNORE_PRESENTATION_RESTORATION_TIMEOUT = 5000;
 
@@ -100,6 +98,7 @@ class Presentation extends PureComponent {
     this.onResize = () => setTimeout(this.handleResize.bind(this), 0);
     this.setPresentationRef = this.setPresentationRef.bind(this);
     this.setTldrawIsMounting = this.setTldrawIsMounting.bind(this);
+    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     Session.setItem('componentPresentationWillUnmount', false);
   }
 
@@ -350,6 +349,27 @@ class Presentation extends PureComponent {
           group: '',
         },
       });
+    }
+  }
+
+  handleToggleSidebar() {
+    const { sidebarContent, layoutContextDispatch } = this.props;
+    if (sidebarContent && sidebarContent.isOpen) {
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
+        value: false,
+      });
+    } else {
+      layoutContextDispatch({
+        type: ACTIONS.SET_SIDEBAR_CONTENT_IS_OPEN,
+        value: true,
+      });
+      if (!sidebarContent || sidebarContent.sidebarContentPanel === PANELS.NONE) {
+        layoutContextDispatch({
+          type: ACTIONS.SET_SIDEBAR_CONTENT_PANEL,
+          value: PANELS.USERLIST,
+        });
+      }
     }
   }
 
@@ -780,6 +800,56 @@ class Presentation extends PureComponent {
           }}
         >
           <h2 className="sr-only">{intl.formatMessage(intlMessages.presentationHeader)}</h2>
+          <Styled.HamburgerButton
+            aria-label="Toggle sidebar"
+            title="Toggle sidebar"
+            onClick={this.handleToggleSidebar}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <clipPath id="leftPanelClip">
+                  <rect x="0" y="0" width="6" height="18" />
+                </clipPath>
+              </defs>
+              {/* Outer rounded rectangle outline */}
+              <rect
+                x="1"
+                y="1"
+                width="16"
+                height="16"
+                rx="3"
+                stroke="#2d2d2d"
+                strokeWidth="1.5"
+                fill="none"
+              />
+              {/* Filled left panel (clipped to flat right edge) */}
+              <rect
+                x="1"
+                y="1"
+                width="16"
+                height="16"
+                rx="3"
+                fill="#2d2d2d"
+                clipPath="url(#leftPanelClip)"
+              />
+              {/* Vertical divider line */}
+              <line
+                x1="6.75"
+                y1="1"
+                x2="6.75"
+                y2="17"
+                stroke="#2d2d2d"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </Styled.HamburgerButton>
           <Styled.Presentation
             ref={(ref) => {
               this.refPresentation = ref;
@@ -805,26 +875,34 @@ class Presentation extends PureComponent {
                 <Styled.VisuallyHidden id="currentSlideText">
                   {slideContent}
                 </Styled.VisuallyHidden>
-                {((userIsPresenter || hasWBAccess) && (!tldrawIsMounting && presentationWidth > 0 && currentSlide)) && <Styled.ExtraTools {...{isToolbarVisible}}>
-                  <TooltipContainer title={intl?.messages["app.shortcut-help.undo"]}>
-                    <Styled.Button
-                      aria-label={intl?.messages["app.shortcut-help.undo"]}
-                      onClick={() => tldrawAPI?.undo()}
-                      className="tlui-undo"
-                    >
-                      <Styled.IconWithMask mask={`${window.meetingClientSettings.public.app.basename}/svgs/tldraw/undo.svg`} />
-                    </Styled.Button>
-                  </TooltipContainer>
-                  <TooltipContainer title={intl?.messages["app.shortcut-help.redo"]}>
-                    <Styled.Button
-                      aria-label={intl?.messages["app.shortcut-help.redo"]}
-                      onClick={() => tldrawAPI?.redo()}
-                      className="tlui-redo"
-                    >
-                      <Styled.IconWithMask mask={`${window.meetingClientSettings.public.app.basename}/svgs/tldraw/redo.svg`} />
-                    </Styled.Button>
-                  </TooltipContainer>
-                </Styled.ExtraTools>}
+                {(() => {
+                  const showExtraTools = (userIsPresenter || hasWBAccess)
+                    && !tldrawIsMounting
+                    && presentationWidth > 0
+                    && currentSlide;
+                  return showExtraTools && (
+                    <Styled.ExtraTools {...{ isToolbarVisible }}>
+                      <TooltipContainer title={intl?.messages['app.shortcut-help.undo']}>
+                        <Styled.Button
+                          aria-label={intl?.messages['app.shortcut-help.undo']}
+                          onClick={() => tldrawAPI?.undo()}
+                          className="tlui-undo"
+                        >
+                          <Styled.IconWithMask mask={`${window.meetingClientSettings.public.app.basename}/svgs/tldraw/undo.svg`} />
+                        </Styled.Button>
+                      </TooltipContainer>
+                      <TooltipContainer title={intl?.messages['app.shortcut-help.redo']}>
+                        <Styled.Button
+                          aria-label={intl?.messages['app.shortcut-help.redo']}
+                          onClick={() => tldrawAPI?.redo()}
+                          className="tlui-redo"
+                        >
+                          <Styled.IconWithMask mask={`${window.meetingClientSettings.public.app.basename}/svgs/tldraw/redo.svg`} />
+                        </Styled.Button>
+                      </TooltipContainer>
+                    </Styled.ExtraTools>
+                  );
+                })()}
                 {!tldrawIsMounting
                   && presentationWidth > 0
                   && currentSlide

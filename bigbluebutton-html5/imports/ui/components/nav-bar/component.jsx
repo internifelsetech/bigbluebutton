@@ -61,7 +61,6 @@ const intlMessages = defineMessages({
 
 const propTypes = {
   presentationTitle: PropTypes.string,
-  hasUnreadMessages: PropTypes.bool,
   shortcuts: PropTypes.string,
   pluginNavBarItems: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
@@ -70,7 +69,6 @@ const propTypes = {
 
 const defaultProps = {
   presentationTitle: 'Default Room Title',
-  hasUnreadMessages: false,
   shortcuts: '',
 };
 
@@ -275,39 +273,20 @@ class NavBar extends Component {
 
   render() {
     const {
-      hasUnreadMessages,
-      hasUnreadNotes,
       intl,
-      shortcuts: TOGGLE_USERLIST_AK,
       presentationTitle,
       amIModerator,
       style,
       main,
-      isPinned,
-      sidebarNavigation,
-      sidebarContent,
       currentUserId,
       isDirectLeaveButtonEnabled,
-      isConnected,
       hideTopRow,
     } = this.props;
-
-    const hasNotification = hasUnreadMessages || (hasUnreadNotes && !isPinned);
-
-    let ariaLabel = intl.formatMessage(intlMessages.toggleUserListAria);
-    ariaLabel += hasNotification ? (` ${intl.formatMessage(intlMessages.newMessages)}`) : '';
-
-    const isExpanded = sidebarContent.isOpen;
-    const { isPhone } = deviceInfo;
 
     const { leftPluginItems, centerPluginItems, rightPluginItems } = this.splitPluginItems();
 
     const Settings = getSettingsSingletonInstance();
     const { selectedLayout } = Settings.application;
-    const shouldShowNavBarToggleButton = selectedLayout !== LAYOUT_TYPE.CAMERAS_ONLY
-      && selectedLayout !== LAYOUT_TYPE.PRESENTATION_ONLY
-      && selectedLayout !== LAYOUT_TYPE.PARTICIPANTS_AND_CHAT_ONLY
-      && selectedLayout !== LAYOUT_TYPE.MEDIA_ONLY;
     const shouldShowNavbar = LAYOUT_TYPE.PLUGINS_ONLY !== selectedLayout;
 
     const APP_CONFIG = window.meetingClientSettings?.public?.app;
@@ -335,32 +314,10 @@ class NavBar extends Component {
         {!hideTopRow && (
           <Styled.Top>
             <Styled.Left>
-              {shouldShowNavBarToggleButton && isExpanded && document.dir === 'ltr'
-                && <Styled.ArrowLeft iconName="left_arrow" />}
-              {shouldShowNavBarToggleButton && !isExpanded && document.dir === 'rtl'
-                && <Styled.ArrowLeft iconName="left_arrow" />}
-              {shouldShowNavBarToggleButton && (
-                <Styled.NavbarToggleButton
-                  tooltipplacement="right"
-                  onClick={this.handleToggleUserList}
-                  color={isPhone && isExpanded ? 'primary' : 'dark'}
-                  size="md"
-                  circle
-                  hideLabel
-                  data-test={hasNotification ? 'hasUnreadMessages' : 'toggleUserList'}
-                  label={intl.formatMessage(intlMessages.toggleUserListLabel)}
-                  tooltipLabel={intl.formatMessage(intlMessages.toggleUserListLabel)}
-                  aria-label={ariaLabel}
-                  icon="user"
-                  aria-expanded={isExpanded}
-                  accessKey={TOGGLE_USERLIST_AK}
-                  hasNotification={hasNotification}
-                />
-              )}
-              {shouldShowNavBarToggleButton && !isExpanded && document.dir === 'ltr'
-                && <Styled.ArrowRight iconName="right_arrow" />}
-              {shouldShowNavBarToggleButton && isExpanded && document.dir === 'rtl'
-                && <Styled.ArrowRight iconName="right_arrow" />}
+              <Styled.Logo
+                src={`${APP_CONFIG?.basename || ''}/resources/images/ilmify1.webp`}
+                alt="Ilmify Logo"
+              />
               {renderPluginItems(leftPluginItems)}
             </Styled.Left>
             <Styled.Center>
