@@ -40,14 +40,9 @@ const intlMessages = defineMessages({
 
 const AboutComponent = (props) => {
   const {
-    settings, isOpen, onRequestClose, priority,
+    isOpen, onRequestClose, priority,
   } = props;
   const intl = useIntl();
-  const {
-    html5ClientBuild,
-    bbbServerVersion,
-    displayBbbServerVersion,
-  } = settings;
 
   return (
     <ModalSimple
@@ -70,12 +65,9 @@ const AboutComponent = (props) => {
         <br />
         Smart Islamic Learning
         <br />
+        Client build: 1.0.0
         <br />
-        Client build:
-        {' '}
-        {html5ClientBuild}
-        <br />
-        {displayBbbServerVersion ? `ilmify version: ${bbbServerVersion}` : null}
+        Ilmify version: 1.0.0
         <br />
         <br />
         <a href="https://ilmify.app" target="_blank" rel="noreferrer">
